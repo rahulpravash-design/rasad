@@ -43,3 +43,29 @@ The anomaly layer is trained on earlier winters only. 10.0% of the 38,220 held-o
 | 2.0% | 2.4% | 90.4% |
 | 5.0% | 5.9% | 96.3% |
 <!-- gate:end -->
+
+<!-- forecast:start -->
+## Demand forecasting (held-out winter 2025-26)
+
+Trained on earlier winters only. F3 is newly inducted and has one training winter; F1 and F2 have four. WAPE of the P50 forecast (lower is better), days 1-16 / days 17-30 ahead.
+
+| Model | F1 | F2 | F3 |
+|---|---:|---:|---:|
+| Local only (own formation) | 9.8% / 11.2% | 8.7% / 9.9% | 10.0% / 10.9% |
+| Federated (FedAvg) | 9.8% / 11.2% | 8.6% / 9.8% | 9.8% / 10.8% |
+| Central (pooled data) | 9.8% / 11.2% | 8.7% / 9.8% | 9.7% / 10.7% |
+| Central LightGBM | 9.9% / 11.1% | 8.6% / 9.8% | 9.7% / 10.8% |
+| Naive lagged mean | 14.6% / 14.6% | 13.3% / 13.3% | 13.1% / 13.1% |
+
+Pinball loss (lower is better) and P10-P90 coverage (80% is calibrated), days 17-30:
+
+| Model | F1 pinball | F2 pinball | F3 pinball | F1 cov. | F2 cov. | F3 cov. |
+|---|---:|---:|---:|---:|---:|---:|
+| Local only (own formation) | 3.448 | 2.777 | 2.914 | 72.9% | 79.3% | 74.1% |
+| Federated (FedAvg) | 3.447 | 2.768 | 2.869 | 75.0% | 77.9% | 75.6% |
+| Central (pooled data) | 3.463 | 2.784 | 2.862 | 74.1% | 76.7% | 75.2% |
+| Central LightGBM | 3.427 | 2.801 | 2.901 | 73.7% | 75.9% | 73.6% |
+| Naive lagged mean | 4.467 | 3.744 | 3.368 | 76.4% | 78.4% | 80.4% |
+
+**F3 (data-poor), days 17-30:** local 10.9% -> federated 10.8% WAPE; central 10.7%. Federated training moved model weights only; no report left its formation.
+<!-- forecast:end -->

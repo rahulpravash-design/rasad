@@ -35,11 +35,13 @@ data-check: ## prove `make data` is deterministic: build twice, compare content 
 	echo "build 1: $$a"; echo "build 2: $$b"; \
 	[ "$$a" = "$$b" ] && echo "deterministic: yes" || { echo "deterministic: NO"; exit 1; }
 
-train: ## local, federated, central forecast models (Day 5-6: not implemented yet)
-	@echo "make train: forecast models land on Day 5-6; nothing to train yet." >&2; exit 1
+train: ## local, federated, central forecast models
+	$(PY) -m forecast.train
 
-eval: ## gate, forecast and 100-winter experiments -> eval/results.md (Day 4-9: not implemented yet)
-	@echo "make eval: experiments land on Day 4-9; there are no results yet." >&2; exit 1
+eval: ## gate, forecast and 100-winter experiments -> eval/results.md
+	$(PY) -m gate.eval_gate > /dev/null
+	$(PY) -m forecast.eval_forecast > /dev/null
+	@echo "wrote eval/results.md"
 
 run: ## docker compose up (offline-capable once images are built)
 	docker compose up --build

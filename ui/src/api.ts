@@ -152,3 +152,45 @@ export interface ReportsSummary {
   field: Record<Verdict, number>;
   injected: Record<Verdict, number>;
 }
+
+export interface ForecastDay {
+  date: string;
+  p10: number;
+  p50: number;
+  p90: number;
+  actual: number | null;
+}
+
+export interface ForecastResponse {
+  post_id: string;
+  class: string;
+  unit: string;
+  as_of: string;
+  model: string;
+  days: ForecastDay[];
+}
+
+export interface ForecastItem {
+  class: string;
+  unit: string;
+  stock: number;
+  p50_30d: number;
+  p90_30d: number;
+  days_of_cover: number | null;
+  recommended: number;
+}
+
+export interface FederatedSummary {
+  holdout_winter: string;
+  rounds: number;
+  raw_bytes_shared: number;
+  shared: string;
+  horizon: string;
+  formations: {
+    formation: string;
+    training_rows: number;
+    local_wape: number;
+    federated_wape: number;
+    central_wape: number;
+  }[];
+}
