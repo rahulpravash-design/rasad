@@ -1,0 +1,2167 @@
+{
+ "summary": {
+  "n": 100,
+  "stockout_days": {
+   "baseline_mean": 2.35,
+   "rasad_mean": 0.28,
+   "diff_mean": -2.07,
+   "diff_ci95": [
+    -2.390375665856081,
+    -1.7496243341439188
+   ],
+   "rasad_better_share": 0.8
+  },
+  "heli_emergency": {
+   "baseline_mean": 1361.4096299999999,
+   "rasad_mean": 0.59062,
+   "diff_mean": -1360.8190100000002,
+   "diff_ci95": [
+    -1413.2723039781981,
+    -1308.3657160218022
+   ],
+   "rasad_better_share": 1.0
+  },
+  "heli_planned": {
+   "baseline_mean": 0.0,
+   "rasad_mean": 58.11026,
+   "diff_mean": 58.11026,
+   "diff_ci95": [
+    53.17768839683596,
+    63.04283160316403
+   ],
+   "rasad_better_share": 0.0
+  },
+  "truck": {
+   "baseline_mean": 1324.3520199999998,
+   "rasad_mean": 2096.98675,
+   "diff_mean": 772.63473,
+   "diff_ci95": [
+    733.7900291940665,
+    811.4794308059335
+   ],
+   "rasad_better_share": 0.0
+  },
+  "mule": {
+   "baseline_mean": 0.0,
+   "rasad_mean": 687.0214599999999,
+   "diff_mean": 687.0214599999999,
+   "diff_ci95": [
+    646.2501360353448,
+    727.7927839646551
+   ],
+   "rasad_better_share": 0.0
+  },
+  "cost": {
+   "baseline_mean": 169810467.37,
+   "rasad_mean": 29140905.87,
+   "diff_mean": -140669561.5,
+   "diff_ci95": [
+    -146183583.0540423,
+    -135155539.9459577
+   ],
+   "rasad_better_share": 1.0
+  }
+ },
+ "runs": [
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1383.315,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1354.06,
+    "sorties": 1479.9,
+    "cost": 169008484
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2256.115,
+    "mule": 648.142,
+    "heli_planned": 18.888,
+    "heli_emergency": 0.0,
+    "sorties": 24.2,
+    "cost": 24476877
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1041.926,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1670.181,
+    "sorties": 1833.2,
+    "cost": 206345317
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1984.495,
+    "mule": 817.593,
+    "heli_planned": 85.417,
+    "heli_emergency": 0.246,
+    "sorties": 95.0,
+    "cost": 34099294
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1472.707,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1272.781,
+    "sorties": 1393.1,
+    "cost": 159863157
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2192.568,
+    "mule": 646.522,
+    "heli_planned": 31.978,
+    "heli_emergency": 0.408,
+    "sorties": 41.2,
+    "cost": 26039865
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1438.415,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1228.088,
+    "sorties": 1336.2,
+    "cost": 153453439
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2061.335,
+    "mule": 688.114,
+    "heli_planned": 72.667,
+    "heli_emergency": 0.505,
+    "sorties": 83.8,
+    "cost": 30877394
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1200.592,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1422.606,
+    "sorties": 1572.5,
+    "cost": 178375775
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1763.364,
+    "mule": 899.476,
+    "heli_planned": 114.562,
+    "heli_emergency": 0.422,
+    "sorties": 133.7,
+    "cost": 38833385
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1202.054,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1396.294,
+    "sorties": 1542.9,
+    "cost": 175126246
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1754.673,
+    "mule": 885.644,
+    "heli_planned": 113.059,
+    "heli_emergency": 0.415,
+    "sorties": 132.1,
+    "cost": 38371434
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1144.346,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1623.265,
+    "sorties": 1773.9,
+    "cost": 200279015
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2079.588,
+    "mule": 833.722,
+    "heli_planned": 36.327,
+    "heli_emergency": 0.462,
+    "sorties": 46.5,
+    "cost": 29481960
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1136.616,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1607.24,
+    "sorties": 1756.6,
+    "cost": 198336087
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2084.617,
+    "mule": 805.821,
+    "heli_planned": 34.477,
+    "heli_emergency": 0.378,
+    "sorties": 43.5,
+    "cost": 28669832
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1415.14,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1236.05,
+    "sorties": 1366.8,
+    "cost": 156718278
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1946.134,
+    "mule": 759.998,
+    "heli_planned": 66.033,
+    "heli_emergency": 0.643,
+    "sorties": 81.3,
+    "cost": 31376948
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1107.475,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1570.336,
+    "sorties": 1725.8,
+    "cost": 194826957
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1938.523,
+    "mule": 782.812,
+    "heli_planned": 80.137,
+    "heli_emergency": 0.985,
+    "sorties": 90.2,
+    "cost": 32736120
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1349.803,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1300.599,
+    "sorties": 1408.8,
+    "cost": 161040123
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2054.227,
+    "mule": 658.3,
+    "heli_planned": 68.299,
+    "heli_emergency": 1.465,
+    "sorties": 75.0,
+    "cost": 29343932
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 5,
+    "truck": 1192.358,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1470.299,
+    "sorties": 1604.6,
+    "cost": 181876386
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2237.31,
+    "mule": 572.927,
+    "heli_planned": 41.403,
+    "heli_emergency": 1.594,
+    "sorties": 44.1,
+    "cost": 25236386
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 5,
+    "truck": 967.905,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1714.198,
+    "sorties": 1885.2,
+    "cost": 211725731
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1551.544,
+    "mule": 1209.395,
+    "heli_planned": 104.143,
+    "heli_emergency": 0.588,
+    "sorties": 123.5,
+    "cost": 42334583
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1197.957,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1488.426,
+    "sorties": 1625.8,
+    "cost": 184224927
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2291.122,
+    "mule": 537.984,
+    "heli_planned": 41.012,
+    "heli_emergency": 0.52,
+    "sorties": 42.9,
+    "cost": 24709862
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1249.543,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1400.997,
+    "sorties": 1536.0,
+    "cost": 174586959
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 1514.312,
+    "mule": 1193.832,
+    "heli_planned": 64.66,
+    "heli_emergency": 0.539,
+    "sorties": 79.9,
+    "cost": 37093697
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1465.798,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1292.099,
+    "sorties": 1407.9,
+    "cost": 161470538
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2333.666,
+    "mule": 538.101,
+    "heli_planned": 43.636,
+    "heli_emergency": 0.174,
+    "sorties": 45.0,
+    "cost": 25140695
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1561.82,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1128.916,
+    "sorties": 1216.9,
+    "cost": 140886363
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2268.802,
+    "mule": 495.066,
+    "heli_planned": 56.435,
+    "heli_emergency": 0.944,
+    "sorties": 59.1,
+    "cost": 25623601
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1641.169,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1008.376,
+    "sorties": 1110.7,
+    "cost": 129561651
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2245.095,
+    "mule": 480.875,
+    "heli_planned": 73.534,
+    "heli_emergency": 0.894,
+    "sorties": 85.3,
+    "cost": 28142243
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1011.923,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1599.565,
+    "sorties": 1755.4,
+    "cost": 197649021
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1920.992,
+    "mule": 785.561,
+    "heli_planned": 83.054,
+    "heli_emergency": 0.632,
+    "sorties": 93.3,
+    "cost": 33052529
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1569.786,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1114.594,
+    "sorties": 1227.3,
+    "cost": 142070723
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2228.035,
+    "mule": 517.263,
+    "heli_planned": 63.98,
+    "heli_emergency": 0.301,
+    "sorties": 73.8,
+    "cost": 27453240
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 5,
+    "truck": 1657.827,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1020.924,
+    "sorties": 1123.8,
+    "cost": 131081237
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2267.464,
+    "mule": 489.846,
+    "heli_planned": 73.752,
+    "heli_emergency": 0.677,
+    "sorties": 85.6,
+    "cost": 28440564
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1337.289,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1308.917,
+    "sorties": 1433.0,
+    "cost": 163650664
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 2170.216,
+    "mule": 632.936,
+    "heli_planned": 22.401,
+    "heli_emergency": 0.879,
+    "sorties": 29.3,
+    "cost": 24383935
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1241.121,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1419.49,
+    "sorties": 1550.7,
+    "cost": 176166836
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1995.698,
+    "mule": 709.503,
+    "heli_planned": 75.468,
+    "heli_emergency": 1.287,
+    "sorties": 84.1,
+    "cost": 31006670
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1450.51,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1276.787,
+    "sorties": 1390.8,
+    "cost": 159513909
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2303.549,
+    "mule": 528.531,
+    "heli_planned": 43.951,
+    "heli_emergency": 0.708,
+    "sorties": 46.2,
+    "cost": 24958823
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1735.332,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1040.964,
+    "sorties": 1107.5,
+    "cost": 129630019
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2537.293,
+    "mule": 390.975,
+    "heli_planned": 2.06,
+    "heli_emergency": 0.567,
+    "sorties": 2.9,
+    "cost": 18772560
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1100.484,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1579.433,
+    "sorties": 1736.1,
+    "cost": 195927689
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1926.681,
+    "mule": 789.158,
+    "heli_planned": 83.383,
+    "heli_emergency": 0.702,
+    "sorties": 93.6,
+    "cost": 33168514
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1379.019,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1358.454,
+    "sorties": 1486.5,
+    "cost": 169720879
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2249.091,
+    "mule": 651.003,
+    "heli_planned": 19.528,
+    "heli_emergency": 0.426,
+    "sorties": 25.5,
+    "cost": 24640582
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1140.418,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1604.64,
+    "sorties": 1753.4,
+    "cost": 198005675
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2009.811,
+    "mule": 871.646,
+    "heli_planned": 47.514,
+    "heli_emergency": 0.414,
+    "sorties": 57.1,
+    "cost": 31012598
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1114.599,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1566.779,
+    "sorties": 1712.2,
+    "cost": 193360725
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1961.597,
+    "mule": 857.992,
+    "heli_planned": 47.435,
+    "heli_emergency": 0.078,
+    "sorties": 56.9,
+    "cost": 30527054
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1435.045,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1251.65,
+    "sorties": 1363.2,
+    "cost": 156413831
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2274.268,
+    "mule": 518.72,
+    "heli_planned": 40.789,
+    "heli_emergency": 1.565,
+    "sorties": 43.9,
+    "cost": 24394666
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1112.837,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1579.677,
+    "sorties": 1724.6,
+    "cost": 194712213
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 1962.278,
+    "mule": 866.735,
+    "heli_planned": 46.339,
+    "heli_emergency": 0.394,
+    "sorties": 55.7,
+    "cost": 30559821
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1100.59,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1518.168,
+    "sorties": 1658.5,
+    "cost": 187389260
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1936.6,
+    "mule": 826.753,
+    "heli_planned": 44.746,
+    "heli_emergency": 0.148,
+    "sorties": 53.6,
+    "cost": 29487731
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1010.868,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1582.296,
+    "sorties": 1735.8,
+    "cost": 195489659
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 1927.547,
+    "mule": 769.961,
+    "heli_planned": 82.249,
+    "heli_emergency": 0.149,
+    "sorties": 91.8,
+    "cost": 32632348
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1029.511,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1610.374,
+    "sorties": 1768.0,
+    "cost": 199114893
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1950.603,
+    "mule": 787.695,
+    "heli_planned": 84.885,
+    "heli_emergency": 0.239,
+    "sorties": 94.6,
+    "cost": 33359523
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1350.007,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1413.937,
+    "sorties": 1542.0,
+    "cost": 175691680
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 2537.602,
+    "mule": 404.296,
+    "heli_planned": 6.751,
+    "heli_emergency": 0.122,
+    "sorties": 7.6,
+    "cost": 19527203
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1431.772,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1236.625,
+    "sorties": 1347.0,
+    "cost": 154615791
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 2062.121,
+    "mule": 687.603,
+    "heli_planned": 73.647,
+    "heli_emergency": 0.288,
+    "sorties": 84.8,
+    "cost": 30979685
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1383.2,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1341.105,
+    "sorties": 1461.8,
+    "cost": 167021447
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1945.734,
+    "mule": 826.179,
+    "heli_planned": 75.844,
+    "heli_emergency": 0.451,
+    "sorties": 86.2,
+    "cost": 33107908
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1558.043,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1118.055,
+    "sorties": 1203.6,
+    "cost": 139409508
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2259.097,
+    "mule": 490.458,
+    "heli_planned": 56.076,
+    "heli_emergency": 0.202,
+    "sorties": 57.8,
+    "cost": 25348937
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 2070.374,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 672.517,
+    "sorties": 713.6,
+    "cost": 87813113
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2450.551,
+    "mule": 327.627,
+    "heli_planned": 27.624,
+    "heli_emergency": 0.251,
+    "sorties": 28.4,
+    "cost": 20050861
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1665.504,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 956.069,
+    "sorties": 1036.2,
+    "cost": 121473680
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2268.302,
+    "mule": 428.806,
+    "heli_planned": 55.111,
+    "heli_emergency": 0.321,
+    "sorties": 57.0,
+    "cost": 24194828
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1121.856,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1587.396,
+    "sorties": 1744.5,
+    "cost": 196947388
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1953.554,
+    "mule": 795.189,
+    "heli_planned": 83.767,
+    "heli_emergency": 1.302,
+    "sorties": 94.9,
+    "cost": 33543075
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1464.966,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1263.23,
+    "sorties": 1380.8,
+    "cost": 158477216
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2181.409,
+    "mule": 641.084,
+    "heli_planned": 32.526,
+    "heli_emergency": 0.451,
+    "sorties": 42.1,
+    "cost": 25986823
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1434.119,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1281.917,
+    "sorties": 1401.8,
+    "cost": 160656894
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2005.13,
+    "mule": 771.425,
+    "heli_planned": 65.052,
+    "heli_emergency": 0.703,
+    "sorties": 75.8,
+    "cost": 31248313
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 6,
+    "truck": 1739.189,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 928.328,
+    "sorties": 1017.7,
+    "cost": 119777560
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2015.432,
+    "mule": 758.784,
+    "heli_planned": 22.354,
+    "heli_emergency": 0.407,
+    "sorties": 29.0,
+    "cost": 25915761
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1660.269,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1039.044,
+    "sorties": 1144.2,
+    "cost": 133332809
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2490.851,
+    "mule": 323.486,
+    "heli_planned": 39.906,
+    "heli_emergency": 0.369,
+    "sorties": 41.4,
+    "cost": 21582401
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1191.378,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1434.949,
+    "sorties": 1572.6,
+    "cost": 178343654
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1527.361,
+    "mule": 1208.971,
+    "heli_planned": 66.501,
+    "heli_emergency": 0.609,
+    "sorties": 82.4,
+    "cost": 37695139
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1453.112,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1256.896,
+    "sorties": 1368.6,
+    "cost": 157080480
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2297.603,
+    "mule": 523.689,
+    "heli_planned": 41.073,
+    "heli_emergency": 0.788,
+    "sorties": 43.0,
+    "cost": 24494449
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1208.395,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1482.015,
+    "sorties": 1617.2,
+    "cost": 183328369
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2291.562,
+    "mule": 546.981,
+    "heli_planned": 41.373,
+    "heli_emergency": 0.515,
+    "sorties": 43.0,
+    "cost": 24884927
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1007.219,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1577.108,
+    "sorties": 1731.1,
+    "cost": 194957868
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1923.677,
+    "mule": 768.796,
+    "heli_planned": 77.4,
+    "heli_emergency": 0.859,
+    "sorties": 86.7,
+    "cost": 32026707
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1436.963,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1248.923,
+    "sorties": 1359.6,
+    "cost": 156025024
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2065.457,
+    "mule": 698.15,
+    "heli_planned": 73.069,
+    "heli_emergency": 0.809,
+    "sorties": 84.5,
+    "cost": 31158768
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1428.812,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1291.308,
+    "sorties": 1410.4,
+    "cost": 161572591
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2000.185,
+    "mule": 778.665,
+    "heli_planned": 66.027,
+    "heli_emergency": 0.593,
+    "sorties": 76.1,
+    "cost": 31392085
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1116.57,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1519.561,
+    "sorties": 1683.9,
+    "cost": 190254385
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1814.853,
+    "mule": 894.412,
+    "heli_planned": 110.038,
+    "heli_emergency": 0.586,
+    "sorties": 132.5,
+    "cost": 38836854
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1470.759,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1275.09,
+    "sorties": 1394.1,
+    "cost": 159974690
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2194.186,
+    "mule": 639.959,
+    "heli_planned": 33.896,
+    "heli_emergency": 0.482,
+    "sorties": 43.5,
+    "cost": 26181425
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1106.795,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1560.797,
+    "sorties": 1715.8,
+    "cost": 193713922
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1932.377,
+    "mule": 778.16,
+    "heli_planned": 80.782,
+    "heli_emergency": 0.576,
+    "sorties": 90.7,
+    "cost": 32685072
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 5,
+    "truck": 1183.502,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1481.219,
+    "sorties": 1617.3,
+    "cost": 183226216
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2267.355,
+    "mule": 538.786,
+    "heli_planned": 43.28,
+    "heli_emergency": 0.935,
+    "sorties": 45.6,
+    "cost": 24912662
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1967.701,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 613.486,
+    "sorties": 660.6,
+    "cost": 81522070
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2377.83,
+    "mule": 268.077,
+    "heli_planned": 28.055,
+    "heli_emergency": 1.084,
+    "sorties": 30.3,
+    "cost": 18856793
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1991.479,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 696.797,
+    "sorties": 750.6,
+    "cost": 91524650
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2434.86,
+    "mule": 312.613,
+    "heli_planned": 29.525,
+    "heli_emergency": 1.211,
+    "sorties": 32.1,
+    "cost": 20116419
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1143.854,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1620.615,
+    "sorties": 1770.6,
+    "cost": 199913941
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2112.316,
+    "mule": 806.891,
+    "heli_planned": 31.776,
+    "heli_emergency": 0.236,
+    "sorties": 41.0,
+    "cost": 28534094
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1677.075,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1050.385,
+    "sorties": 1156.9,
+    "cost": 134807270
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2518.42,
+    "mule": 322.898,
+    "heli_planned": 41.76,
+    "heli_emergency": 0.0,
+    "sorties": 42.9,
+    "cost": 21863027
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1033.44,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1647.199,
+    "sorties": 1806.9,
+    "cost": 203414745
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 1965.027,
+    "mule": 800.245,
+    "heli_planned": 81.978,
+    "heli_emergency": 0.744,
+    "sorties": 91.5,
+    "cost": 33315602
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1088.642,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1582.611,
+    "sorties": 1729.9,
+    "cost": 195182636
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1948.642,
+    "mule": 861.534,
+    "heli_planned": 46.014,
+    "heli_emergency": 0.357,
+    "sorties": 55.5,
+    "cost": 30382629
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1206.891,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1512.598,
+    "sorties": 1650.9,
+    "cost": 187028480
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2304.156,
+    "mule": 553.495,
+    "heli_planned": 42.047,
+    "heli_emergency": 0.245,
+    "sorties": 43.7,
+    "cost": 25134345
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1185.602,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1444.073,
+    "sorties": 1581.3,
+    "cost": 179282851
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1655.099,
+    "mule": 1108.118,
+    "heli_planned": 43.465,
+    "heli_emergency": 0.307,
+    "sorties": 52.2,
+    "cost": 33138447
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1623.535,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 973.562,
+    "sorties": 1071.7,
+    "cost": 125188093
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2218.233,
+    "mule": 469.467,
+    "heli_planned": 72.226,
+    "heli_emergency": 0.08,
+    "sorties": 83.0,
+    "cost": 27564378
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1130.611,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1600.78,
+    "sorties": 1748.0,
+    "cost": 197364813
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1988.364,
+    "mule": 878.058,
+    "heli_planned": 45.899,
+    "heli_emergency": 1.138,
+    "sorties": 56.1,
+    "cost": 30924591
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1460.235,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1239.497,
+    "sorties": 1356.8,
+    "cost": 155817154
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2166.799,
+    "mule": 627.469,
+    "heli_planned": 32.681,
+    "heli_emergency": 0.384,
+    "sorties": 42.3,
+    "cost": 25700919
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 6,
+    "truck": 1476.498,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1265.062,
+    "sorties": 1383.7,
+    "cost": 158847043
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2185.764,
+    "mule": 647.635,
+    "heli_planned": 34.072,
+    "heli_emergency": 0.8,
+    "sorties": 44.6,
+    "cost": 26397744
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1043.829,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1638.188,
+    "sorties": 1798.9,
+    "cost": 202575276
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1983.413,
+    "mule": 794.494,
+    "heli_planned": 84.735,
+    "heli_emergency": 0.606,
+    "sorties": 94.8,
+    "cost": 33658773
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1344.775,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1434.222,
+    "sorties": 1564.4,
+    "cost": 178137076
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2539.982,
+    "mule": 413.971,
+    "heli_planned": 4.415,
+    "heli_emergency": 0.765,
+    "sorties": 5.8,
+    "cost": 19520313
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1041.72,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1643.649,
+    "sorties": 1804.8,
+    "cost": 203211678
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1981.54,
+    "mule": 798.826,
+    "heli_planned": 87.0,
+    "heli_emergency": 0.71,
+    "sorties": 97.6,
+    "cost": 34033347
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1666.714,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1003.766,
+    "sorties": 1112.2,
+    "cost": 129847652
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 2197.402,
+    "mule": 528.976,
+    "heli_planned": 63.466,
+    "heli_emergency": 1.244,
+    "sorties": 76.0,
+    "cost": 27767699
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 863.866,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1809.839,
+    "sorties": 1974.5,
+    "cost": 221083594
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1766.016,
+    "mule": 1007.067,
+    "heli_planned": 82.474,
+    "heli_emergency": 0.469,
+    "sorties": 92.4,
+    "cost": 36243704
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1208.128,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1539.352,
+    "sorties": 1679.0,
+    "cost": 190123229
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2138.951,
+    "mule": 715.211,
+    "heli_planned": 72.868,
+    "heli_emergency": 0.625,
+    "sorties": 79.1,
+    "cost": 31198243
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1114.971,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1539.304,
+    "sorties": 1680.2,
+    "cost": 189835593
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 1951.236,
+    "mule": 836.68,
+    "heli_planned": 44.622,
+    "heli_emergency": 0.472,
+    "sorties": 53.4,
+    "cost": 29712734
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 5,
+    "truck": 1019.344,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1643.585,
+    "sorties": 1803.8,
+    "cost": 203007554
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1971.984,
+    "mule": 792.395,
+    "heli_planned": 83.823,
+    "heli_emergency": 0.367,
+    "sorties": 93.6,
+    "cost": 33429750
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1374.211,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1250.43,
+    "sorties": 1377.3,
+    "cost": 157683530
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2094.493,
+    "mule": 634.669,
+    "heli_planned": 81.943,
+    "heli_emergency": 0.092,
+    "sorties": 95.3,
+    "cost": 31331215
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 862.124,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1824.285,
+    "sorties": 1990.6,
+    "cost": 222841141
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 1763.278,
+    "mule": 1013.209,
+    "heli_planned": 83.818,
+    "heli_emergency": 0.483,
+    "sorties": 94.1,
+    "cost": 36519551
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1040.025,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1667.669,
+    "sorties": 1830.7,
+    "cost": 206057280
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1985.801,
+    "mule": 811.662,
+    "heli_planned": 84.247,
+    "heli_emergency": 0.91,
+    "sorties": 94.8,
+    "cost": 33977876
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1198.681,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1396.245,
+    "sorties": 1544.3,
+    "cost": 175268372
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 1754.709,
+    "mule": 882.673,
+    "heli_planned": 112.673,
+    "heli_emergency": 1.319,
+    "sorties": 132.7,
+    "cost": 38379557
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1052.852,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1664.388,
+    "sorties": 1827.5,
+    "cost": 205767277
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1999.467,
+    "mule": 813.29,
+    "heli_planned": 86.062,
+    "heli_emergency": 0.806,
+    "sorties": 96.9,
+    "cost": 34291677
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 2064.165,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 661.153,
+    "sorties": 700.8,
+    "cost": 86376653
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2438.448,
+    "mule": 322.71,
+    "heli_planned": 28.504,
+    "heli_emergency": 0.625,
+    "sorties": 29.8,
+    "cost": 20054442
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1312.086,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1445.478,
+    "sorties": 1573.0,
+    "cost": 178930916
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2451.442,
+    "mule": 470.681,
+    "heli_planned": 17.596,
+    "heli_emergency": 0.554,
+    "sorties": 18.9,
+    "cost": 21585860
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1537.105,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1116.985,
+    "sorties": 1204.0,
+    "cost": 139358232
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2235.714,
+    "mule": 492.612,
+    "heli_planned": 54.376,
+    "heli_emergency": 0.469,
+    "sorties": 56.2,
+    "cost": 25113855
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 858.817,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1844.152,
+    "sorties": 2012.0,
+    "cost": 225185837
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1764.558,
+    "mule": 1033.449,
+    "heli_planned": 83.506,
+    "heli_emergency": 0.823,
+    "sorties": 93.7,
+    "cost": 36854839
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1476.184,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1252.254,
+    "sorties": 1371.6,
+    "cost": 157517122
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2180.91,
+    "mule": 635.36,
+    "heli_planned": 33.69,
+    "heli_emergency": 0.48,
+    "sorties": 43.3,
+    "cost": 26016902
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1204.322,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1479.721,
+    "sorties": 1616.5,
+    "cost": 183237903
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2297.114,
+    "mule": 532.722,
+    "heli_planned": 44.706,
+    "heli_emergency": 0.187,
+    "sorties": 46.9,
+    "cost": 25080230
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1132.065,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1564.879,
+    "sorties": 1708.2,
+    "cost": 192997006
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1981.475,
+    "mule": 854.08,
+    "heli_planned": 48.088,
+    "heli_emergency": 0.511,
+    "sorties": 58.0,
+    "cost": 30672374
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1438.181,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1183.525,
+    "sorties": 1310.1,
+    "cost": 150586867
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1944.321,
+    "mule": 733.379,
+    "heli_planned": 65.96,
+    "heli_emergency": 0.528,
+    "sorties": 81.1,
+    "cost": 30870430
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1689.197,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1074.261,
+    "sorties": 1182.7,
+    "cost": 137693733
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2543.011,
+    "mule": 329.42,
+    "heli_planned": 42.39,
+    "heli_emergency": 0.947,
+    "sorties": 44.8,
+    "cost": 22304455
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1568.651,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1139.948,
+    "sorties": 1254.1,
+    "cost": 145011348
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2231.626,
+    "mule": 534.614,
+    "heli_planned": 63.582,
+    "heli_emergency": 0.299,
+    "sorties": 73.3,
+    "cost": 27724640
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1610.688,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1080.415,
+    "sorties": 1192.5,
+    "cost": 138419902
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2409.302,
+    "mule": 381.587,
+    "heli_planned": 32.331,
+    "heli_emergency": 0.493,
+    "sorties": 41.7,
+    "cost": 22295641
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1144.116,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1616.95,
+    "sorties": 1767.0,
+    "cost": 199520182
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2087.78,
+    "mule": 818.872,
+    "heli_planned": 33.874,
+    "heli_emergency": 0.058,
+    "sorties": 42.7,
+    "cost": 28831835
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1183.042,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1459.602,
+    "sorties": 1593.8,
+    "cost": 180644224
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1895.0,
+    "mule": 838.864,
+    "heli_planned": 84.299,
+    "heli_emergency": 1.34,
+    "sorties": 99.7,
+    "cost": 34598278
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1031.208,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1615.478,
+    "sorties": 1772.4,
+    "cost": 199607392
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 1956.602,
+    "mule": 788.675,
+    "heli_planned": 80.533,
+    "heli_emergency": 0.745,
+    "sorties": 90.3,
+    "cost": 32931652
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 1605.845,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1085.322,
+    "sorties": 1198.9,
+    "cost": 139108163
+   },
+   "rasad": {
+    "stockout_days": 2,
+    "truck": 2264.943,
+    "mule": 489.603,
+    "heli_planned": 57.98,
+    "heli_emergency": 1.014,
+    "sorties": 68.8,
+    "cost": 26574205
+   },
+   "base_winter": 2021
+  },
+  {
+   "baseline": {
+    "stockout_days": 2,
+    "truck": 1641.455,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1009.493,
+    "sorties": 1111.5,
+    "cost": 129652565
+   },
+   "rasad": {
+    "stockout_days": 1,
+    "truck": 2248.59,
+    "mule": 478.138,
+    "heli_planned": 71.185,
+    "heli_emergency": 0.683,
+    "sorties": 82.4,
+    "cost": 27793630
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 1,
+    "truck": 1139.554,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1602.885,
+    "sorties": 1750.5,
+    "cost": 197680295
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2002.846,
+    "mule": 874.693,
+    "heli_planned": 45.5,
+    "heli_emergency": 0.298,
+    "sorties": 54.5,
+    "cost": 30756227
+   },
+   "base_winter": 2022
+  },
+  {
+   "baseline": {
+    "stockout_days": 4,
+    "truck": 872.511,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1825.629,
+    "sorties": 1990.8,
+    "cost": 222917052
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 1779.326,
+    "mule": 1016.046,
+    "heli_planned": 84.239,
+    "heli_emergency": 0.438,
+    "sorties": 93.9,
+    "cost": 36627022
+   },
+   "base_winter": 2024
+  },
+  {
+   "baseline": {
+    "stockout_days": 3,
+    "truck": 1394.882,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 1217.755,
+    "sorties": 1343.0,
+    "cost": 154004157
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2088.988,
+    "mule": 624.646,
+    "heli_planned": 83.08,
+    "heli_emergency": 0.808,
+    "sorties": 97.4,
+    "cost": 31355122
+   },
+   "base_winter": 2023
+  },
+  {
+   "baseline": {
+    "stockout_days": 0,
+    "truck": 1635.423,
+    "mule": 0.0,
+    "heli_planned": 0.0,
+    "heli_emergency": 979.879,
+    "sorties": 1078.3,
+    "cost": 125967239
+   },
+   "rasad": {
+    "stockout_days": 0,
+    "truck": 2229.285,
+    "mule": 472.264,
+    "heli_planned": 73.665,
+    "heli_emergency": 0.341,
+    "sorties": 84.8,
+    "cost": 27862372
+   },
+   "base_winter": 2023
+  }
+ ]
+}

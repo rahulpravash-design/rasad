@@ -2,82 +2,86 @@
 
 SIH 2026 · PS SIH26251 · Indian Army predictive logistics and forward supply chain
 
-> **Status: Day 1-2 of the 10-day plan.** The data layer, API skeleton and dashboard exist. The
-> verified data gate, forecasting, federated learning, planner and audit log do not yet. Nothing
-> here has been measured on real Army data, and consumption is synthetic.
+> **Status: v0.4 prototype (all 10 plan days built).** Every number below was produced by a script in
+> this repository on **synthetic** data: consumption is simulated, closures follow a stated rule,
+> and in this build the weather is a synthetic climatology because Open-Meteo was unreachable.
+> Nothing here has touched real Army data.
 
 ## What it is
 
-An AI decision layer for resupplying high-altitude posts. Field reports are verified before they
-are trusted, demand is forecast per post and supply class, and movement is planned around passes
-that will close. It runs offline on one laptop. *(Architecture diagram: to be added at
-`docs/architecture.png`.)*
+An AI decision layer for resupplying high-altitude posts. Field reports are verified before
+anything trusts them, demand is forecast per post and supply class without pooling raw data, and
+movement is planned around passes that are about to close. It runs offline on one laptop.
 
 ## Three pillars
 
-| Pillar | What it does | Built? |
+| Pillar | What it does | Code |
 |---|---|---|
-| Verified data gate | Ed25519-signed reports, rule checks, anomaly detection | Day 3-4 |
-| Federated forecasting | Per-formation quantile models averaged without sharing raw data | Day 5-6 |
-| Closure-aware planner | Truck / mule / helicopter plan with a stated reason for each choice | Day 7-8 |
+| Verified data gate | Ed25519-signed reports; hard rules (signature, arithmetic, replay, timestamps); soft rules (stock continuity, receipts); Isolation Forest anomaly layer | `gate/` |
+| Federated forecasting | Quantile MLP (P10/P50/P90) trained per formation and combined with FedAvg; only weights move | `forecast/` |
+| Closure-aware planner | Closure-risk model plus an OR-Tools MILP over truck, mule and helicopter, with a reason for every movement | `closure/`, `planner/` |
+
+Plus a hash-chained audit log (`audit/`) and two JWT roles, of which only the Logistics Officer may
+approve a plan.
 
 ## Quick start
 
 ```bash
-make setup     # Python 3.11 venv + pinned deps, npm ci
-make data      # weather + synthetic data -> SQLite (about 15 s)
-make dev       # API on :8000, UI on :5173
+make setup     # Python 3.11 venv + pinned deps (requirements.lock), npm ci
+make data      # weather + synthetic data + signed reports through the gate -> SQLite (~1.5 min)
+make train     # local, central, federated, LightGBM and naive forecasters (~1 min)
+make eval      # gate, forecast and 100-winter experiments -> eval/results.md (~10 min)
+make dev       # API on :8000, UI on :5173   (make run: same in Docker, untested)
 ```
 
-`make run` starts the same stack in Docker (untested so far). `make help` lists everything.
-
-`make data` tries Open-Meteo for real weather and **falls back to a synthetic climatology if it
-cannot**, flagged in the log, in `/health` and in the UI. See `docs/real-vs-mocked.md`.
-
-## What works now
-
-* 42 posts, 3 formations, 5 depots, 4 passes in `config/`, with consumption model and live-editable
-  constraints
-* Deterministic data pipeline: weather, five winters of synthetic daily consumption, a stock
-  simulation and about 153k balance-checked daily reports (`make data-check` proves repeatability)
-* Pass closure labels from a stated rule (`closure/labels.py`)
-* API: `/health`, `/dashboard/kpis`, `/passes`, `/sector/geojson`, replayed as of a date in the
-  held-out winter
-* Dashboard: KPI tiles, offline map of posts, depots and passes, pass status; four placeholder pages
-* A pytest suite (config, weather, closure rule, generator, stock balance, API, determinism), plus
-  a CI workflow (ruff, pytest, determinism check, UI build) that has not run on GitHub yet
+Sign in on Route Planning as `lo` (Logistics Officer) or `staff`, password `demo` (`DEMO_PASSWORD`).
+torch is pinned from PyPI and pulls CUDA wheels; on a laptop without a GPU, install the CPU build
+first (`pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu`).
 
 ## Demo flow
 
-[docs/demo-script.md](docs/demo-script.md), with what works today marked.
+[docs/demo-script.md](docs/demo-script.md): Dashboard → Reports & Verification (inject a forged
+report) → Forecasting → Route Planning (change helicopter payload, re-plan) → Approve → Audit Log.
 
 ## Results
 
-None yet. `eval/results.md` is filled from measured runs on Day 4-9, and only measured numbers go
-into it.
+| Experiment | Result (held-out or simulated; synthetic data) |
+|---|---|
+| Gate: forged signature / replay | 100.0% / 100.0% detected |
+| Gate: deflated stock / inflated consumption (validly signed insider) | 98.6% / 85.4% detected (34.3% for ammunition, where real surges look the same) |
+| Gate: false alarms on clean reports | 1.2%, all flagged for review, none rejected |
+| Forecast WAPE, days 17-30, F3 (one training winter) | local 10.9%, federated 10.8%, central 10.7%, naive 13.1% |
+| 100 winters: emergency airlift per winter | baseline 1,361 t, RASAD 0.6 t |
+| 100 winters: stock-out post-class-days per winter | baseline 2.4, RASAD 0.3 |
+| 100 winters: movement cost per winter (assumed rates) | baseline 1,698 L INR, RASAD 291 L INR |
+
+Full tables, confidence intervals and caveats: [eval/results.md](eval/results.md), generated by `make eval`.
 
 ## Real vs mocked
 
-[docs/real-vs-mocked.md](docs/real-vs-mocked.md). In short: consumption is synthetic (only the
-2.5 kg/day rations rate is sourced), closure labels are rule-based, locations are approximate
-place-name centroids rather than deployment sites, and weather is real only when Open-Meteo was
-reachable at build time.
+[docs/real-vs-mocked.md](docs/real-vs-mocked.md). In short: the algorithms are real and measured;
+the data they run on is simulated, and locations are approximate place-name centroids rather than
+deployment sites.
 
 ## Architecture (5 tiers)
 
-Field report → signed-report gate → federated forecasting → closure-aware planner → officer
-dashboard with hash-chained audit log. Today: SQLite data layer, FastAPI, React + MapLibre.
-Contracts: [docs/data-contracts.md](docs/data-contracts.md).
+Field report (signed) → verified data gate → federated forecasting → closure-aware planner →
+officer dashboard with audit log. SQLite, FastAPI, PyTorch/scikit-learn/LightGBM, OR-Tools,
+React + MapLibre + Recharts. Contracts: [docs/data-contracts.md](docs/data-contracts.md).
 
 ## Limitations
 
-* Consumption is synthetic; no real Army data was used.
-* Closure labels follow a stated rule, not observed closures. Under that rule a closed pass stays
-  closed until the end of March.
-* Weather in the committed prototype build is synthetic (Open-Meteo was unreachable when it was
-  built); re-run `make data` with internet to change that.
-* Offline map is GeoJSON over a blank background; terrain tiles are not included.
-* Docker files are untested.
+* Consumption is synthetic; no real Army data was used. Federated learning helps little here because
+  every formation's consumption comes from the same formula.
+* Closure labels follow a stated rule, not observed closures; once closed, a pass stays closed until
+  late spring under that rule.
+* Weather in this build is synthetic; re-run `make data` with internet and re-pick
+  `scenario.as_of`.
+* A validly signed insider inflating ammunition use is caught only about a third of the time.
+* The planning experiment uses the planner's rules weekly, not the MILP, against a deliberately
+  naive fixed-scale baseline.
+* Roles, keys and passwords are stubs; offline sync, mTLS and full RBAC are design only. Docker
+  files are untested. The offline map has no terrain tiles.
 
 ## Team
 

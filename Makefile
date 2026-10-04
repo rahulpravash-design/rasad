@@ -38,9 +38,10 @@ data-check: ## prove `make data` is deterministic: build twice, compare content 
 train: ## local, federated, central forecast models
 	$(PY) -m forecast.train
 
-eval: ## gate, forecast and 100-winter experiments -> eval/results.md
+eval: ## gate, forecast and 100-winter experiments -> eval/results.md (needs make train)
 	$(PY) -m gate.eval_gate > /dev/null
 	$(PY) -m forecast.eval_forecast > /dev/null
+	$(PY) -m eval.run_winters > /dev/null
 	@echo "wrote eval/results.md"
 
 run: ## docker compose up (offline-capable once images are built)
@@ -61,7 +62,7 @@ lint: ## ruff + UI typecheck
 	$(VENV)/bin/ruff format --check .
 	cd ui && npm run typecheck
 
-demo: data ## seed data, then start the app and print the demo flow
+demo: data train ## seed data, train models, then start the app and print the demo flow
 	@echo ""; echo "Demo flow: docs/demo-script.md   UI: http://localhost:5173"; echo ""
 	@$(MAKE) --no-print-directory dev
 

@@ -69,3 +69,20 @@ Pinball loss (lower is better) and P10-P90 coverage (80% is calibrated), days 17
 
 **F3 (data-poor), days 17-30:** local 10.9% -> federated 10.8% WAPE; central 10.7%. Federated training moved model weights only; no report left its formation.
 <!-- forecast:end -->
+
+<!-- winters:start -->
+## Planning: 100 simulated winters (seed 42)
+
+Weather resampled from the four pre-holdout winters and perturbed (temperature shift, snowfall scaling); demand from the same consumption model with fresh seeds. Mean per winter across the 42 posts; the difference is RASAD minus baseline with a 95% CI; the last column is the share of winters where RASAD was lower (better).
+
+| Metric (per winter) | Fixed-scale baseline | RASAD | Difference (95% CI) | RASAD lower |
+|---|---:|---:|---:|---:|
+| Stock-out post-class-days | 2.4 | 0.3 | -2.1 (-2.4 to -1.7) | 80% |
+| Emergency airlift (t) | 1,361.4 | 0.6 | -1,360.8 (-1,413.3 to -1,308.4) | 100% |
+| Planned helicopter (t) | 0.0 | 58.1 | 58.1 (53.2 to 63.0) | 0% |
+| Truck (t) | 1,324.4 | 2,097.0 | 772.6 (733.8 to 811.5) | 0% |
+| Mule (t) | 0.0 | 687.0 | 687.0 (646.3 to 727.8) | 0% |
+| Movement cost (INR) | 1,698.1 L | 291.4 L | -1,406.7 L (-1,461.8 L to -1,351.6 L) | 100% |
+
+The simulation applies the planner's need rule and mode order rather than solving the MILP each week; costs use the assumed rates in config/constraints.yaml.
+<!-- winters:end -->

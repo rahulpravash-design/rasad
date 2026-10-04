@@ -3,11 +3,14 @@
 What the prototype actually does, and what it only pretends to. Update this file in the same pull
 request as any change that moves something from one column to the other.
 
-| Real | Mocked / assumed |
+| Real (runs, measured) | Mocked / assumed |
 |---|---|
-| Signing, gate, forecasting, optimiser *(built from Day 3 on; none exist yet)* | Consumption: synthetic. Only the rations rate (2.5 kg/soldier/day) is sourced; every other rate, factor and surge parameter is an assumption in `config/consumption.yaml` |
-| Measured experiment results *(none yet; `eval/results.md` is empty until Day 9)* | Closure labels: rule-based (`closure/labels.py`), not observed closures |
-| Terrain, weather, road geometry: **conditional**, see below | Offline sync, mTLS, full RBAC: design only |
+| Ed25519 signing, rule checks, anomaly detection, attack injection (`gate/`) | Consumption: synthetic. Only the rations rate (2.5 kg/soldier/day) is sourced; every other rate, factor and surge parameter is an assumption in `config/consumption.yaml` |
+| Quantile forecasting, federated averaging, baselines (`forecast/`) | Closure labels: rule-based (`closure/labels.py`); the risk model learns that rule, not observed closures |
+| Closure-risk model, MILP planner with reasons (`closure/risk.py`, `planner/`) | Signing keys: derived from the seed by the simulator, not held on devices |
+| Hash-chained audit log, two JWT roles | Roles and password: stub (`api/auth.py`); offline sync, mTLS, Keycloak, full RBAC: design only |
+| Experiment results in `eval/results.md`, all script-generated | Costs, payloads, mule capacity, sortie budget: assumptions in `config/constraints.yaml` |
+| Weather and terrain: **conditional**, see below | Federated learning is a single-process simulation of three clients (hand-written FedAvg, not Flower) |
 
 ## Weather: real only when Open-Meteo was reachable
 
@@ -43,3 +46,11 @@ called real in the pitch: run `make data` on a machine with internet, confirm `/
 * **Replay.** The app treats `scenario.as_of` as "today" and ignores later rows. The date sits in
   the held-out winter (2025-26), so forecasts can be scored against simulated actuals.
 * **Seed.** Everything is seeded (`SEED=42`); `make data-check` proves two builds are identical.
+
+* **Weather forecast.** Forecasts for days 1-16 use the observed temperature as if it were a perfect
+  16-day weather forecast; days 17-30 use climatology. Real forecasts would do somewhat worse.
+* **Planning experiment.** The 100-winter simulation applies the planner's need rule and mode order
+  weekly; it does not solve the MILP each week. The baseline is fixed-scale and trucks-only by
+  design, so it shows what forecasting plus closure awareness adds, not how a real formation plans.
+* **Federated gain is small** on this data because every formation's consumption comes from the same
+  formula; real formations would differ more.
