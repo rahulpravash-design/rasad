@@ -173,6 +173,34 @@ def test_fetch_does_not_retry_a_403(setup):
     assert len(seen) == 1
 
 
+def test_fetch_does_not_retry_a_proxy_refusal(setup):
+    _, locs, timeline, cfg = setup
+    calls: list[int] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(1)
+        raise httpx.ProxyError("403 Forbidden")
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    with pytest.raises(WeatherFetchError, match="proxy refused"):
+        fetch_open_meteo(locs, timeline, cfg, client=client)
+    assert len(calls) == 1
+
+
+def test_fetch_retries_dropped_connections_then_gives_up(setup):
+    _, locs, timeline, cfg = setup
+    calls: list[int] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(1)
+        raise httpx.ConnectError("connection reset")
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    with pytest.raises(WeatherFetchError, match="unreachable"):
+        fetch_open_meteo(locs, timeline, cfg, client=client)
+    assert len(calls) == cfg["open_meteo"]["retries"] + 1
+
+
 def test_fetch_retries_server_errors_then_gives_up(setup):
     _, locs, timeline, cfg = setup
     seen: list[dict] = []

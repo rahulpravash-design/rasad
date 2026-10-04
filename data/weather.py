@@ -84,7 +84,10 @@ def _request(client: httpx.Client, url: str, params: dict[str, str], cfg: dict[s
     for attempt in range(int(cfg["retries"]) + 1):
         try:
             resp = client.get(url, params=params, timeout=float(cfg["timeout_s"]))
-        except httpx.HTTPError as exc:  # connection errors, timeouts
+        except httpx.ProxyError as exc:
+            # An egress proxy refusing the tunnel (e.g. 403 on CONNECT) is a policy decision.
+            raise WeatherFetchError(f"proxy refused the connection: {exc}") from exc
+        except httpx.HTTPError as exc:  # connection errors, timeouts: worth retrying
             last = exc
         else:
             if resp.status_code == 200:
