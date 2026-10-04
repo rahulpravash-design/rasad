@@ -4,8 +4,8 @@ const LABEL: Record<PassState, string> = { OPEN: "Open", AT_RISK: "At risk", CLO
 
 function detail(p: PassRow): string {
   if (p.status === "CLOSED") return `closed ${p.days ?? 0} d`;
-  if (p.snow_3d_cm !== null) return `${p.snow_3d_cm.toFixed(1)} cm snow / 3 d`;
-  return "";
+  const risk = p.p_close !== null ? `P(close in 14 d) ${p.p_close.toFixed(2)}` : "";
+  return p.days ? `${risk} · likely within ${p.days} d` : risk;
 }
 
 export default function PassList({ passes }: { passes: PassRow[] }) {

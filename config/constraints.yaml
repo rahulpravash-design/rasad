@@ -49,13 +49,18 @@ modes:
     payload_t: 0.08               # per animal
     cost_per_t: 18000
     speed_kmph: 3
+    animals_per_post: 30          # mule train available to a post with mule access
+    round_trip_days: 3
   heli:
     payload_t: 1.0                # at sea level
     altitude_derating:
       start_m: 3000
       per_1000m: 0.15             # payload lost per km above start_m
-    cost_per_t: 140000
+    cost_per_sortie: 110000       # INR per sortie (flying hours, fuel); assumption
     speed_kmph: 150
-    daily_capacity_t: 12          # across the sector
+    daily_sorties: 12             # helicopter sorties the sector can fly per day
 
-risk_penalty_per_unit: 25000      # planner objective weight on stock-out risk (assumption)
+risk_penalty_per_unit: 25000      # INR per tonne x closure probability on truck legs (assumption)
+shortfall_penalty_per_t: 100000000  # far above any sortie, so need goes unmet only if impossible
+road_factor: 1.5                  # road km per straight-line km (assumption)
+truck_lead_days: 2                # a truck must clear the pass at least this long before closure

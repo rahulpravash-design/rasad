@@ -17,6 +17,7 @@ from pathlib import Path
 from api.db import connect, digest
 from api.settings import get_settings
 from closure.labels import closure_labels
+from closure.risk import fit_and_score
 from config.loader import load_constraints, load_consumption, load_sector
 from data.generate import generate_consumption
 from data.load import load_database
@@ -95,12 +96,17 @@ def build(
         "stockout_days": str(stats["stockout_days"]),
         **{f"gate_{k.lower()}": str(n) for k, n in stats["verdicts"].items()},
     }
+    pass_status, _ = fit_and_score(
+        weather[weather["location_id"].isin(pass_ids)],
+        closure,
+        sector["passes"],
+        int(sector["timeline"]["holdout_winter"]),
+    )
     load_database(
         db_path,
         sector,
-        constraints["closure_rule"],
         weather,
-        closure,
+        pass_status,
         reports,
         deliveries,
         verdicts,

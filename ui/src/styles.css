@@ -166,7 +166,7 @@ a.nav-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px
 .reasons li { margin: 3px 0; }
 .recheck { margin-top: 10px; }
 
-.btn { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; font: inherit; cursor: pointer; }
+.btn { white-space: nowrap; background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; font: inherit; cursor: pointer; }
 .btn:hover:not(:disabled) { border-color: var(--accent); }
 .btn:disabled { opacity: 0.6; cursor: progress; }
 .btn-danger { border-color: color-mix(in srgb, var(--bad) 60%, transparent); color: #ffb4ae; }
@@ -192,3 +192,12 @@ select { background: var(--bg); color: var(--text); border: 1px solid var(--line
 .fed-arrow { color: var(--accent); font-size: 12px; margin-top: 6px; }
 .fed-global { margin: 8px 0 12px; padding: 10px; border-radius: 8px; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); text-align: center; font-size: 13px; }
 .table.compact td, .table.compact th { padding: 6px 8px; }
+
+/* ---- planning & audit ---- */
+.reason { font-size: 14px; line-height: 1.5; border-left: 3px solid var(--accent); padding-left: 10px; }
+.login { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.login input { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; min-width: 0; flex: 1; }
+.btn-ok { border-color: color-mix(in srgb, var(--ok) 60%, transparent); color: var(--ok); }
+.btn.link { background: none; border: 0; color: var(--accent); padding: 0; text-decoration: underline; }
+.banner-ok { color: #a6e3c7; border-color: color-mix(in srgb, var(--ok) 60%, transparent); background: color-mix(in srgb, var(--ok) 12%, transparent); }
+.details { max-width: 420px; }

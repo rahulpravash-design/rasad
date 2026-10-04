@@ -10,7 +10,6 @@ from typing import Any
 import pandas as pd
 
 from api.db import connect, init_schema
-from closure.labels import interim_status
 
 
 def _iso(series: pd.Series) -> list[str]:
@@ -20,9 +19,8 @@ def _iso(series: pd.Series) -> list[str]:
 def load_database(
     path: Path,
     sector: dict[str, Any],
-    closure_rule: dict[str, Any],
     weather: pd.DataFrame,
-    closure: pd.DataFrame,
+    pass_status: pd.DataFrame,
     reports: pd.DataFrame,
     deliveries: pd.DataFrame,
     verdicts: pd.DataFrame,
@@ -129,21 +127,20 @@ def load_database(
             ),
         )
 
-        # Interim pass status for every day: rule labels only, no probability yet.
-        status_rows = []
-        for row in closure.sort_values(["pass_id", "date"]).itertuples():
-            status_rows.append(
-                (
-                    row.pass_id,
-                    row.date.strftime("%Y-%m-%d"),
-                    interim_status(bool(row.closed), float(row.snow_3d_cm), closure_rule),
-                    None,
-                    int(row.days_closed) if row.closed else None,
-                    float(row.snow_3d_cm),
-                    float(row.temp_14d_c),
-                    "rule-label",
-                )
+        # Pass status for every day from the closure-risk model (closure/risk.py).
+        status_rows = [
+            (
+                r.pass_id,
+                r.date.strftime("%Y-%m-%d"),
+                r.status,
+                round(float(r.p14), 3),
+                None if r.days is None or pd.isna(r.days) else int(r.days),
+                round(float(r.snow3), 2),
+                round(float(r.temp14), 2),
+                "model",
             )
+            for r in pass_status.sort_values(["pass_id", "date"]).itertuples()
+        ]
         conn.executemany("INSERT INTO pass_status VALUES (?, ?, ?, ?, ?, ?, ?, ?)", status_rows)
 
         conn.executemany("INSERT INTO meta VALUES (?, ?)", sorted(meta.items()))

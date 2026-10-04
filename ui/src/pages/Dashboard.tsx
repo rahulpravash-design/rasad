@@ -90,8 +90,8 @@ export default function Dashboard() {
           <h2>Pass status</h2>
           {passes.data ? <PassList passes={passes.data.passes} /> : <p className="muted">Loading…</p>}
           <p className="muted small">
-            Interim status from the closure rule. Closure probability and days-to-closure come with
-            the Day 7 model.
+            Closure probability from a logistic model trained on the stated closure rule (earlier
+            winters); CLOSED means the rule says the pass is closed.
           </p>
         </div>
       </section>

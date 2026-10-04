@@ -81,10 +81,13 @@ export interface SectorGeoJson {
   features: SectorFeature[];
 }
 
-export async function postJson<T>(path: string, body?: unknown): Promise<T> {
+export async function postJson<T>(path: string, body?: unknown, token?: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   if (!res.ok) {
@@ -193,4 +196,42 @@ export interface FederatedSummary {
     federated_wape: number;
     central_wape: number;
   }[];
+}
+
+export interface PlanItem {
+  id: number;
+  post_id: string;
+  class: string;
+  mode: "truck" | "mule" | "heli";
+  qty_t: number;
+  depart_date: string;
+  cost: number;
+  time_days: number;
+  risk: number;
+  reason: string;
+  status: string;
+}
+
+export interface Plan {
+  id: number;
+  created_at: string;
+  as_of: string;
+  horizon_days: number;
+  status: "DRAFT" | "APPROVED" | "CANCELLED";
+  created_by: string | null;
+  cost: number;
+  tonnes_by_mode: Record<string, number>;
+  items: PlanItem[];
+  sorties_used?: number;
+  sortie_budget?: number;
+}
+
+export interface AuditEntry {
+  seq: number;
+  ts: string;
+  event: string;
+  actor: string | null;
+  payload: string;
+  prev_hash: string;
+  hash: string;
 }

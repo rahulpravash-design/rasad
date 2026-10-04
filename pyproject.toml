@@ -48,3 +48,5 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+# The formatter wraps code at 100; long SQL and message strings are left alone.
+ignore = ["E501"]

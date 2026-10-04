@@ -77,9 +77,10 @@ def test_passes_contract(client):
     for row in rows.values():
         assert {"pass", "status", "p_close", "days"} <= set(row)
         assert row["status"] in {"OPEN", "AT_RISK", "CLOSED"}
-        assert row["p_close"] is None  # no model until Day 7
-        assert row["source"] == "rule-label"
-        assert (row["days"] is not None) == (row["status"] == "CLOSED")
+        assert 0 <= row["p_close"] <= 1
+        assert row["source"] == "model"
+        if row["status"] == "CLOSED":
+            assert row["p_close"] == 1.0 and row["days"] >= 1
 
 
 def test_passes_show_a_mix_at_the_scenario_date(client):

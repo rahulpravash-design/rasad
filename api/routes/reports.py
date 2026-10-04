@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from api.deps import get_as_of_rw, get_rw_db
 from api.gate_service import get_gate
 from api.settings import get_settings
+from audit import chain
 from gate import attacks, signing
 from gate.batch import to_wire
 from gate.context import DbContext
@@ -213,6 +214,11 @@ def submit_report(report: SignedReport, conn: Conn, as_of: AsOf) -> VerdictOut:
             f"for {wire['ts'][:10]}",
         )
     stored_id = _persist(conn, wire, verdict, "field")
+    chain.append(
+        conn,
+        f"report_{verdict.verdict.lower()}",
+        {"report_id": stored_id, "reasons": verdict.codes},
+    )
     return _verdict_out(stored_id, verdict)
 
 
@@ -276,6 +282,15 @@ def inject(body: InjectRequest, conn: Conn, as_of: AsOf) -> InjectResult:
     # Judged as the real report would have been: against the world before that day began.
     verdict = get_gate().evaluate(report, _context(conn, as_of))
     stored_id = _persist(conn, report, verdict, "injected")
+    chain.append(
+        conn,
+        f"report_{verdict.verdict.lower()}",
+        {
+            "report_id": stored_id,
+            "injected": body.attack_type,
+            "reasons": verdict.codes,
+        },
+    )
     return InjectResult(
         attack_type=body.attack_type,
         target=f"{post_id}/{supply_class} on {as_of}",

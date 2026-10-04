@@ -8,8 +8,9 @@ from typing import Any
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from api import auth
 from api.db import connect
-from api.routes import dashboard, forecast, passes, reports, sector
+from api.routes import dashboard, forecast, passes, plan, reports, sector
 from api.settings import get_settings
 
 app = FastAPI(
@@ -31,6 +32,8 @@ app.include_router(passes.router)
 app.include_router(sector.router)
 app.include_router(reports.router)
 app.include_router(forecast.router)
+app.include_router(plan.router)
+app.include_router(auth.router)
 
 
 @app.get("/health", tags=["health"])
