@@ -1,0 +1,91 @@
+# RASAD sector definition: one Ladakh sector, 42 posts, 3 formations, 5 depots, 4 passes.
+#
+# READ THIS BEFORE USING THE COORDINATES
+#   * Post, depot and pass positions are approximate place-name centroids (roughly +/-5-10 km)
+#     taken from public gazetteer-level knowledge. They are NOT surveyed positions.
+#   * The posts are a simulation scaffold. They are not actual deployment sites, and the troop
+#     numbers are invented. Verify every coordinate and altitude against survey data before using
+#     distances or travel times for anything beyond the demo.
+#   * `via_pass` is a deliberate simplification: the single pass that gates the post's main
+#     resupply lane in this model. Real lanes have alternates.
+#
+# Posts are grouped by formation first, then by gating pass.
+
+timeline:
+  # Winter seasons run 1 Oct (first_winter) to 31 Mar (first_winter + 1). A season is named by its
+  # start year, so 2021 is winter 2021-22 and 2025 is winter 2025-26.
+  first_winter: 2021
+  last_winter: 2025
+  season_start: "10-01"
+  season_end: "03-31"
+  # The last winter is held out for forecast evaluation; the models never train on it.
+  holdout_winter: 2025
+
+formations:
+  F1: { name: "Western sector (Drass - Kargil - Suru - Zanskar)", history_start: "2021-10-01" }
+  F2: { name: "Central sector (Leh - Nubra - Indus valley)", history_start: "2021-10-01" }
+  # F3 is newly inducted: it only has data from winter 2024-25. This is the data-poor case where
+  # federated learning is supposed to help.
+  F3: { name: "Eastern sector (Changthang - Hanle - Nyoma)", history_start: "2024-10-01" }
+
+depots:
+  - { id: LEH, name: "Leh", lat: 34.15, lon: 77.58, altitude_m: 3500 }
+  - { id: KARGIL, name: "Kargil", lat: 34.55, lon: 76.13, altitude_m: 2676 }
+  - { id: DRASS, name: "Drass", lat: 34.43, lon: 75.76, altitude_m: 3280 }
+  - { id: TANGTSE, name: "Tangtse", lat: 34.03, lon: 78.27, altitude_m: 4000 }
+  - { id: NYOMA, name: "Nyoma", lat: 33.20, lon: 78.65, altitude_m: 4100 }
+
+passes:
+  - { id: ZOJI_LA, name: "Zoji La", lat: 34.29, lon: 75.48, altitude_m: 3528 }
+  - { id: KHARDUNG_LA, name: "Khardung La", lat: 34.28, lon: 77.60, altitude_m: 5359 }
+  - { id: CHANG_LA, name: "Chang La", lat: 34.04, lon: 77.99, altitude_m: 5360 }
+  - { id: TANGLANG_LA, name: "Tanglang La", lat: 33.53, lon: 77.77, altitude_m: 5328 }
+
+posts:
+  # ---- F1: western sector (14 posts), all gated by Zoji La --------------------------------
+  - { id: MINAMARG-01, formation: F1, lat: 34.31, lon: 75.51, altitude_m: 3250, troops: 60, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule] }
+  - { id: GUMRI-01, formation: F1, lat: 34.35, lon: 75.62, altitude_m: 3200, troops: 55, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule] }
+  - { id: MATAYAN-01, formation: F1, lat: 34.38, lon: 75.67, altitude_m: 3300, troops: 70, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: PANDRASS-01, formation: F1, lat: 34.40, lon: 75.72, altitude_m: 3300, troops: 65, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: DRASS-01, formation: F1, lat: 34.43, lon: 75.76, altitude_m: 3280, troops: 140, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: DRASS-02, formation: F1, lat: 34.45, lon: 75.79, altitude_m: 3350, troops: 90, depot: DRASS, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: KARGIL-01, formation: F1, lat: 34.55, lon: 76.13, altitude_m: 2676, troops: 150, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: KARGIL-02, formation: F1, lat: 34.57, lon: 76.16, altitude_m: 2700, troops: 110, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: SANKOO-01, formation: F1, lat: 34.32, lon: 76.09, altitude_m: 3000, troops: 50, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: PANIKHAR-01, formation: F1, lat: 34.20, lon: 76.12, altitude_m: 3200, troops: 45, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: RANGDUM-01, formation: F1, lat: 33.93, lon: 76.35, altitude_m: 3800, troops: 35, depot: KARGIL, via_pass: ZOJI_LA, access: [mule, heli] }
+  - { id: PADUM-01, formation: F1, lat: 33.47, lon: 76.88, altitude_m: 3657, troops: 40, depot: KARGIL, via_pass: ZOJI_LA, access: [mule, heli] }
+  - { id: LAMAYURU-01, formation: F1, lat: 34.29, lon: 76.78, altitude_m: 3510, troops: 50, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+  - { id: KHALTSE-01, formation: F1, lat: 34.32, lon: 76.87, altitude_m: 2960, troops: 60, depot: KARGIL, via_pass: ZOJI_LA, access: [truck, mule, heli] }
+
+  # ---- F2: central sector (14 posts): Nubra via Khardung La, Leh/Indus valley via Tanglang La -
+  - { id: LEH-01, formation: F2, lat: 34.15, lon: 77.58, altitude_m: 3500, troops: 130, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: LEH-02, formation: F2, lat: 34.18, lon: 77.62, altitude_m: 3550, troops: 100, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: STAKNA-01, formation: F2, lat: 33.97, lon: 77.72, altitude_m: 3600, troops: 55, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: HEMIS-01, formation: F2, lat: 33.92, lon: 77.68, altitude_m: 3600, troops: 40, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: KARU-01, formation: F2, lat: 33.93, lon: 77.78, altitude_m: 3350, troops: 75, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: UPSHI-01, formation: F2, lat: 33.84, lon: 77.82, altitude_m: 3500, troops: 65, depot: LEH, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: KHARDUNG-01, formation: F2, lat: 34.34, lon: 77.62, altitude_m: 4000, troops: 45, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule] }
+  - { id: KHALSAR-01, formation: F2, lat: 34.43, lon: 77.57, altitude_m: 3100, troops: 60, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule, heli] }
+  - { id: DISKIT-01, formation: F2, lat: 34.55, lon: 77.55, altitude_m: 3100, troops: 90, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule, heli] }
+  - { id: DISKIT-02, formation: F2, lat: 34.56, lon: 77.57, altitude_m: 3150, troops: 70, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule, heli] }
+  - { id: HUNDER-01, formation: F2, lat: 34.58, lon: 77.48, altitude_m: 3100, troops: 55, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule, heli] }
+  - { id: SUMUR-01, formation: F2, lat: 34.62, lon: 77.56, altitude_m: 3150, troops: 50, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, mule, heli] }
+  - { id: PANAMIK-01, formation: F2, lat: 34.77, lon: 77.56, altitude_m: 3250, troops: 45, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, heli] }
+  - { id: TURTUK-01, formation: F2, lat: 34.84, lon: 76.83, altitude_m: 2900, troops: 40, depot: LEH, via_pass: KHARDUNG_LA, access: [truck, heli] }
+
+  # ---- F3: eastern sector (14 posts), newly inducted ---------------------------------------
+  - { id: HANLE-01, formation: F3, lat: 32.78, lon: 78.96, altitude_m: 4500, troops: 50, depot: NYOMA, via_pass: CHANG_LA, access: [truck, heli] }
+  - { id: HANLE-02, formation: F3, lat: 32.80, lon: 78.98, altitude_m: 4520, troops: 40, depot: NYOMA, via_pass: CHANG_LA, access: [truck, heli] }
+  - { id: HANLE-03, formation: F3, lat: 32.77, lon: 78.98, altitude_m: 4480, troops: 30, depot: NYOMA, via_pass: CHANG_LA, access: [mule, heli] }
+  - { id: NYOMA-01, formation: F3, lat: 33.20, lon: 78.65, altitude_m: 4100, troops: 80, depot: NYOMA, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: NYOMA-02, formation: F3, lat: 33.18, lon: 78.67, altitude_m: 4120, troops: 60, depot: NYOMA, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: LOMA-01, formation: F3, lat: 33.28, lon: 78.56, altitude_m: 4100, troops: 45, depot: NYOMA, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: MAHE-01, formation: F3, lat: 33.35, lon: 78.40, altitude_m: 4050, troops: 40, depot: NYOMA, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: CHUMATHANG-01, formation: F3, lat: 33.38, lon: 78.20, altitude_m: 3950, troops: 50, depot: NYOMA, via_pass: TANGLANG_LA, access: [truck, mule, heli] }
+  - { id: KARZOK-01, formation: F3, lat: 32.95, lon: 78.27, altitude_m: 4500, troops: 35, depot: NYOMA, via_pass: TANGLANG_LA, access: [truck, heli] }
+  - { id: TANGTSE-01, formation: F3, lat: 34.03, lon: 78.27, altitude_m: 4000, troops: 85, depot: TANGTSE, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: TANGTSE-02, formation: F3, lat: 34.05, lon: 78.28, altitude_m: 4050, troops: 65, depot: TANGTSE, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: LUKUNG-01, formation: F3, lat: 33.77, lon: 78.54, altitude_m: 4250, troops: 55, depot: TANGTSE, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: DURBUK-01, formation: F3, lat: 34.17, lon: 78.12, altitude_m: 4250, troops: 60, depot: TANGTSE, via_pass: CHANG_LA, access: [truck, mule, heli] }
+  - { id: SAKTI-01, formation: F3, lat: 34.03, lon: 77.88, altitude_m: 3900, troops: 50, depot: TANGTSE, via_pass: CHANG_LA, access: [truck, mule, heli] }

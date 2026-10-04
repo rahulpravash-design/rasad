@@ -1,0 +1,16 @@
+# Placeholder owners: replace @rahulpravash-design with each role's GitHub handle once the team is
+# added. Roles: A ML lead, B ML/OR, C backend, D frontend, E research/pitch.
+
+/gate/                       @rahulpravash-design   # A
+/forecast/federated.py       @rahulpravash-design   # A
+/forecast/                   @rahulpravash-design   # B
+/closure/                    @rahulpravash-design   # B
+/planner/                    @rahulpravash-design   # B
+/api/                        @rahulpravash-design   # C
+/data/                       @rahulpravash-design   # C
+/audit/                      @rahulpravash-design   # C
+/docker-compose.yml          @rahulpravash-design   # C
+/ui/                         @rahulpravash-design   # D
+/eval/                       @rahulpravash-design   # E
+/docs/                       @rahulpravash-design   # E
+/README.md                   @rahulpravash-design   # E

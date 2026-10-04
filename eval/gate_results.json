@@ -1,0 +1,170 @@
+{
+  "anomaly_threshold_sweep": [
+    {
+      "holdout_false_alarm_rate": 0.006357927786499215,
+      "inflated_detection_rate": 0.8002092050209205,
+      "training_false_alarm_target": 0.005
+    },
+    {
+      "holdout_false_alarm_rate": 0.01164311878597593,
+      "inflated_detection_rate": 0.8535564853556485,
+      "training_false_alarm_target": 0.01
+    },
+    {
+      "holdout_false_alarm_rate": 0.023600209314495028,
+      "inflated_detection_rate": 0.9037656903765691,
+      "training_false_alarm_target": 0.02
+    },
+    {
+      "holdout_false_alarm_rate": 0.059314495028780743,
+      "inflated_detection_rate": 0.9633891213389121,
+      "training_false_alarm_target": 0.05
+    }
+  ],
+  "attack_rate": 0.1,
+  "attacks": {
+    "deflated_stock": {
+      "built": 953,
+      "caught_by": {
+        "anomalous_consumption": 10,
+        "stock_discontinuity": 937
+      },
+      "ci95": [
+        0.9768013765613642,
+        0.9920110162108563
+      ],
+      "detected": 940,
+      "detection_rate": 0.9863588667366212,
+      "flagged": 940,
+      "label": "Deflated stock (insider)",
+      "missed": 13,
+      "rejected": 0,
+      "selected": 956
+    },
+    "forged_signature": {
+      "built": 956,
+      "caught_by": {
+        "bad_signature": 956
+      },
+      "ci95": [
+        0.9959976729493701,
+        1.0
+      ],
+      "detected": 956,
+      "detection_rate": 1.0,
+      "flagged": 0,
+      "label": "Forged signature",
+      "missed": 0,
+      "rejected": 956,
+      "selected": 956
+    },
+    "inflated_consumption": {
+      "built": 956,
+      "caught_by": {
+        "anomalous_consumption": 816
+      },
+      "ci95": [
+        0.8297297324587473,
+        0.8745531408820207
+      ],
+      "detected": 816,
+      "detection_rate": 0.8535564853556485,
+      "flagged": 816,
+      "label": "Inflated consumption (insider)",
+      "missed": 140,
+      "rejected": 0,
+      "selected": 956
+    },
+    "replay": {
+      "built": 956,
+      "caught_by": {
+        "replay": 956,
+        "timestamp_not_after_previous": 956
+      },
+      "ci95": [
+        0.9959976729493701,
+        1.0
+      ],
+      "detected": 956,
+      "detection_rate": 1.0,
+      "flagged": 0,
+      "label": "Replay",
+      "missed": 0,
+      "rejected": 956,
+      "selected": 956
+    }
+  },
+  "clean": {
+    "by_class": {
+      "ammunition": {
+        "false_alarms": 96,
+        "n": 7644
+      },
+      "fuel": {
+        "false_alarms": 119,
+        "n": 7644
+      },
+      "medical": {
+        "false_alarms": 81,
+        "n": 7644
+      },
+      "rations": {
+        "false_alarms": 67,
+        "n": 7644
+      },
+      "spares": {
+        "false_alarms": 82,
+        "n": 7644
+      }
+    },
+    "ci95": [
+      0.010615654725907744,
+      0.012768745234560912
+    ],
+    "false_alarm_rate": 0.01164311878597593,
+    "false_alarms": 445,
+    "n": 38220,
+    "reasons": {
+      "anomalous_consumption": 445
+    }
+  },
+  "holdout_winter": "2025-26",
+  "in_use_false_alarm_target": 0.01,
+  "inflated_by_class": {
+    "ammunition": {
+      "detected": 71,
+      "n": 207
+    },
+    "fuel": {
+      "detected": 195,
+      "n": 199
+    },
+    "medical": {
+      "detected": 168,
+      "n": 168
+    },
+    "rations": {
+      "detected": 180,
+      "n": 180
+    },
+    "spares": {
+      "detected": 202,
+      "n": 202
+    }
+  },
+  "inflated_by_factor": {
+    "2-2.5x": {
+      "detected": 352,
+      "n": 427
+    },
+    "<2x": {
+      "detected": 93,
+      "n": 120
+    },
+    ">=2.5x": {
+      "detected": 371,
+      "n": 409
+    }
+  },
+  "seed": 42
+}

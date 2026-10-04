@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets and local settings (never commit private keys)
+*.pem
+*.key
+.env
+
+# Generated data: rebuilt by `make data`
+data/cache/*
+!data/cache/.gitkeep
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+*.joblib
+models/
+
+# Node
+node_modules/
+ui/dist/
+ui/.vite/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

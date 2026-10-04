@@ -1,0 +1,66 @@
+# Live-editable operating constraints. The API re-reads this file on every request, so editing
+# scenario.as_of, min_stock_days or (from Day 7) the mode payloads and costs changes the next
+# KPI/plan without a restart: the Day 7 "change helicopter payload" demo.
+#
+# One exception: closure_rule is applied when `make data` builds the pass_status history, so
+# changing it needs a rebuild (about 10 s).
+#
+# Every number here is an ASSUMPTION for the prototype, not an Army figure.
+
+scenario:
+  # Replay mode: the API treats this date as "today" and ignores later rows. It sits inside the
+  # held-out winter (2025-26), so forecasts made here can be scored against what really happened
+  # in the simulated data.
+  # This date was picked against the SYNTHETIC weather (seed 42): on 8 Nov Chang La and Khardung La
+  # are closed while Tanglang La and Zoji La are still open. Real Open-Meteo weather closes the
+  # passes on different dates, so re-pick this date after switching weather sources. The API
+  # re-reads it on every request (or pass ?as_of=YYYY-MM-DD).
+  as_of: "2025-11-08"
+
+min_stock_days:                   # a post-class is "ready" if cover >= this many days
+  rations: 15
+  fuel: 15
+  medical: 20
+  ammunition: 10
+  spares: 10
+
+# Pass closure label rule (closure/labels.py). Interim status shown on the dashboard until the
+# Day 7 model replaces it with P(closed within 14 days).
+closure_rule:
+  season_start_mmdd: "11-01"      # the rule is inactive before this date
+  snow_3d_close_cm: 15.0          # >= this much snow over 3 days closes the pass
+  reopen_mean_temp_14d_c: 0.0     # reopens once the 14-day mean temperature exceeds this
+  at_risk_fraction: 0.5           # interim: AT_RISK once 3-day snow reaches this share of the threshold
+
+gate:
+  # Anomaly layer (gate/anomaly.py). Thresholds are set at training time so that this share of CLEAN
+  # training reports would be flagged, so changing it needs a rebuild.
+  anomaly_false_alarm_target: 0.01
+  history_days: 28                # window for the post's own rolling mean
+  min_history: 7                  # fewer prior reports than this: no z-score is computed
+  n_trees: 200
+
+modes:
+  truck:
+    payload_t: 7.5
+    cost_per_t: 4500              # INR per tonne, assumed
+    speed_kmph: 25
+  mule:
+    payload_t: 0.08               # per animal
+    cost_per_t: 18000
+    speed_kmph: 3
+    animals_per_post: 30          # mule train available to a post with mule access
+    round_trip_days: 3
+  heli:
+    payload_t: 1.0                # at sea level
+    altitude_derating:
+      start_m: 3000
+      per_1000m: 0.15             # payload lost per km above start_m
+    cost_per_sortie: 110000       # INR per sortie (flying hours, fuel); assumption
+    speed_kmph: 150
+    daily_sorties: 12             # helicopter sorties the sector can fly per day
+
+risk_penalty_per_unit: 25000      # INR per tonne x closure probability on truck legs (assumption)
+shortfall_penalty_per_t: 100000000  # far above any sortie, so need goes unmet only if impossible
+road_factor: 1.5                  # road km per straight-line km (assumption)
+truck_lead_days: 2                # a truck must clear the pass at least this long before closure

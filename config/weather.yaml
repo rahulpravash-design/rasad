@@ -1,0 +1,35 @@
+# Weather inputs. data/weather.py fetches daily weather per post and pass from Open-Meteo's
+# archive API and caches it as Parquet. When Open-Meteo is unreachable the build falls back to a
+# synthetic climatology and stamps every row with its source, so a run never silently mixes the two.
+
+open_meteo:
+  url: "https://archive-api.open-meteo.com/v1/archive"
+  daily: [temperature_2m_mean, temperature_2m_min, snowfall_sum, precipitation_sum]
+  locations_per_request: 10
+  timeout_s: 30
+  retries: 3
+  backoff_s: 2.0
+  pause_between_requests_s: 1.0
+
+# Parameters of the synthetic fallback. ASSUMPTIONS tuned to a cold-desert plateau climate, not fitted
+# to observations.
+synthetic:
+  mean_temp_at_3500m_c: 5.5       # annual mean at 3,500 m
+  seasonal_amplitude_c: 12.5      # peak around 20 July
+  peak_doy: 201
+  lapse_c_per_km: 6.5
+  daily_sd_c: 3.5
+  regional_share: 0.7             # share of temperature/storm variance common to a region
+  ar1: 0.7
+  tmin_offset_c: 6.0              # t_min = t_mean - this
+  storm:
+    base_prob: 0.10               # storm-day probability in mid-winter
+    mean_cm: 6.0                  # mean snowfall on a storm day at 3,500 m
+    altitude_scale_km: 4.0        # snowfall x (1 + (alt - 3500) / (1000 x this))
+  # Regional snow multiplier (key = gating pass). Zoji La takes the monsoon-shadow edge of the
+  # Himalayan storm track; Changthang is very dry.
+  region_snow_multiplier:
+    ZOJI_LA: 3.0
+    KHARDUNG_LA: 1.5
+    CHANG_LA: 1.2
+    TANGLANG_LA: 1.0
