@@ -22,6 +22,9 @@ from data.generate import generate_consumption
 from data.load import load_database
 from data.stock import simulate_stock
 from data.weather import CACHE_DIR, SYNTHETIC, load_weather
+from gate import batch
+from gate.anomaly import model_path
+from gate.pipeline import Gate
 
 log = logging.getLogger("rasad.build")
 
@@ -54,6 +57,35 @@ def build(
     consumption = generate_consumption(sector, ccfg, weather, seed)
     reports, deliveries, stats = simulate_stock(sector, ccfg, consumption, closure, seed)
 
+    # Sign every report with its post's simulated key, then run the history through the gate.
+    keys = batch.public_keys([p["id"] for p in sector["posts"]], seed)
+    reports = batch.sign_reports(reports, seed)
+    post_ids = {p["id"] for p in sector["posts"]}
+    temps = {
+        (r.location_id, r.date.strftime("%Y-%m-%d")): float(r.t_mean_c)
+        for r in weather.itertuples()
+        if r.location_id in post_ids
+    }
+    classes = list(ccfg["classes"])
+    scorer, deferred, rows_used = batch.train_scorer(
+        reports,
+        deliveries,
+        keys,
+        sector,
+        temps,
+        constraints["gate"],
+        float(ccfg["temp_ref_c"]),
+        classes,
+        seed,
+    )
+    scorer.save(model_path(db_path))
+    verdicts = batch.run_history(
+        reports, deliveries, keys, Gate(set(classes), scorer=deferred), batch.post_infos(sector)
+    )
+    stats["verdicts"] = {
+        k: int(n) for k, n in verdicts["verdict"].value_counts().sort_index().items()
+    }
+
     meta = {
         "seed": str(seed),
         "weather_source": weather_source,
@@ -61,9 +93,19 @@ def build(
         "report_rows": str(stats["report_rows"]),
         "delivery_rows": str(stats["delivery_rows"]),
         "stockout_days": str(stats["stockout_days"]),
+        **{f"gate_{k.lower()}": str(n) for k, n in stats["verdicts"].items()},
     }
     load_database(
-        db_path, sector, constraints["closure_rule"], weather, closure, reports, deliveries, meta
+        db_path,
+        sector,
+        constraints["closure_rule"],
+        weather,
+        closure,
+        reports,
+        deliveries,
+        verdicts,
+        keys,
+        meta,
     )
 
     conn = connect(db_path, readonly=True)

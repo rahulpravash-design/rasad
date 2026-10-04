@@ -7,8 +7,11 @@ export interface Loaded<T> {
   loading: boolean;
 }
 
-/** Fetch `path` once (and again when it changes). Errors carry the API's own `detail` message. */
-export function useApi<T>(path: string): Loaded<T> {
+/**
+ * Fetch `path` (again whenever it or `refresh` changes). Errors carry the API's own `detail`
+ * message. Bump `refresh` to reload after a write.
+ */
+export function useApi<T>(path: string, refresh = 0): Loaded<T> {
   const [state, setState] = useState<Loaded<T>>({ data: null, error: null, loading: true });
 
   useEffect(() => {
@@ -25,7 +28,7 @@ export function useApi<T>(path: string): Loaded<T> {
         setState({ data: null, error: message, loading: false });
       });
     return () => controller.abort();
-  }, [path]);
+  }, [path, refresh]);
 
   return state;
 }

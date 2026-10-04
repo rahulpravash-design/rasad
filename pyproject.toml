@@ -9,8 +9,7 @@ description = "AI decision layer for high-altitude military logistics: verified 
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
 license = { text = "Apache-2.0" }
-# Exact pins so every laptop builds the same way. Heavier dependencies (torch, flwr,
-# lightgbm, ortools, cryptography, pyjwt) are added by the day that first uses them.
+# Exact pins so every laptop builds the same way.
 dependencies = [
     "fastapi==0.142.2",
     "uvicorn==0.54.0",
@@ -20,6 +19,13 @@ dependencies = [
     "numpy==2.4.6",
     "pyarrow==25.0.1",
     "httpx==0.28.1",
+    "cryptography==50.0.2",
+    "pyjwt==2.15.1",
+    "scikit-learn==1.9.1",
+    "joblib==1.6.0",
+    "lightgbm==4.7.0",
+    "ortools==9.15.6755",
+    "torch==2.14.1",
 ]
 
 [project.optional-dependencies]
@@ -30,7 +36,7 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = ["api", "api.routes", "audit", "closure", "config", "data", "forecast", "gate", "planner"]
+packages = ["api", "api.routes", "audit", "closure", "config", "data", "eval", "forecast", "gate", "planner"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

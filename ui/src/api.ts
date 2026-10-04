@@ -80,3 +80,75 @@ export interface SectorGeoJson {
   as_of: string;
   features: SectorFeature[];
 }
+
+export async function postJson<T>(path: string, body?: unknown): Promise<T> {
+  const res = await fetch(`${BASE}${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+  if (!res.ok) {
+    let detail = res.statusText;
+    try {
+      const err = await res.json();
+      if (typeof err?.detail === "string") detail = err.detail;
+    } catch {
+      /* non-JSON error body */
+    }
+    throw new ApiError(res.status, detail);
+  }
+  return (await res.json()) as T;
+}
+
+export type Verdict = "VERIFIED" | "FLAGGED" | "REJECTED";
+export type AttackType =
+  | "forged_signature"
+  | "replay"
+  | "inflated_consumption"
+  | "deflated_stock";
+
+export interface StoredReport {
+  report_id: string;
+  post_id: string;
+  ts: string;
+  class: string;
+  opening: number;
+  received: number;
+  consumed: number;
+  closing: number;
+  nonce: string;
+  sig: string | null;
+  origin: "field" | "injected";
+  verdict: Verdict;
+  reasons: string[];
+  reason_codes: string[];
+  score: number | null;
+}
+
+export interface ReportList {
+  as_of: string;
+  total: number;
+  items: StoredReport[];
+}
+
+export interface VerdictOut {
+  report_id: string;
+  verdict: Verdict;
+  reasons: string[];
+  reason_codes: string[];
+  score: number | null;
+}
+
+export interface InjectResult {
+  attack_type: AttackType;
+  target: string;
+  detected: boolean;
+  verdict: VerdictOut;
+  report: StoredReport;
+}
+
+export interface ReportsSummary {
+  as_of: string;
+  field: Record<Verdict, number>;
+  injected: Record<Verdict, number>;
+}

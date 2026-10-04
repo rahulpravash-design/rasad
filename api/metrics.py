@@ -21,10 +21,10 @@ def stock_cover(
     rows = conn.execute(
         """
         SELECT cur.post_id, cur.supply_class, cur.closing, trail.avg_consumed
-        FROM reports AS cur
+        FROM trusted_reports AS cur
         JOIN (
             SELECT post_id, supply_class, AVG(consumed) AS avg_consumed
-            FROM reports
+            FROM trusted_reports
             WHERE report_date BETWEEN date(:as_of, :window) AND :as_of
             GROUP BY post_id, supply_class
         ) AS trail USING (post_id, supply_class)

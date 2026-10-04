@@ -59,7 +59,7 @@ def test_one_report_per_post_class_day_with_unique_ids_and_nonces(tables):
     assert r["nonce"].str.fullmatch(r"[0-9a-f]{16}").all()
     assert r["ts"].str.fullmatch(r"\d{4}-\d{2}-\d{2}T06:\d{2}Z").all()
     assert (r["ts"].str[:10] == r["report_date"]).all()
-    assert r["sig"].isna().all()  # signing arrives Day 3
+    assert r["sig"].str.len().eq(88).all()  # base64 of a 64-byte Ed25519 signature
 
 
 def test_every_post_and_class_reports_every_winter_day(tables):

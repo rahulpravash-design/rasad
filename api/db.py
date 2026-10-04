@@ -10,14 +10,19 @@ SCHEMA_PATH = Path(__file__).with_name("schema.sql")
 
 
 def connect(path: Path | str, *, readonly: bool = False) -> sqlite3.Connection:
-    """Open the database. Read-only connections are safe to share across FastAPI worker threads."""
+    """Open the database.
+
+    `check_same_thread=False` because FastAPI may create a dependency's connection on one worker
+    thread and run the endpoint on another. Each connection belongs to exactly one request and is
+    never used concurrently, which is what that check exists to protect.
+    """
     path = Path(path)
     if readonly:
         conn = sqlite3.connect(
             f"{path.resolve().as_uri()}?mode=ro", uri=True, check_same_thread=False
         )
     else:
-        conn = sqlite3.connect(path)
+        conn = sqlite3.connect(path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn

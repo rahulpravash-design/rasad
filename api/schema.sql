@@ -60,8 +60,15 @@ CREATE TABLE deliveries (
 );
 CREATE INDEX idx_deliveries_date ON deliveries (date);
 
+-- Public keys the gate verifies reports against. Private keys are never stored (see gate/signing.py).
+CREATE TABLE post_keys (
+    post_id    TEXT PRIMARY KEY REFERENCES posts (id),
+    public_key TEXT NOT NULL                -- base64 Ed25519 public key
+);
+
 -- Field reports. The JSON contract calls supply_class "class". `report_date` is the date part of
--- `ts`, kept as a plain column for indexing. `sig` is NULL until signing lands (Day 3).
+-- `ts`, kept as a plain column for indexing. `origin` is 'field' for submitted reports and
+-- 'injected' for tampered ones the demo generates; injected rows are never used for analytics.
 CREATE TABLE reports (
     report_id    TEXT PRIMARY KEY,
     post_id      TEXT NOT NULL REFERENCES posts (id),
@@ -73,17 +80,30 @@ CREATE TABLE reports (
     consumed     INTEGER NOT NULL,
     closing      INTEGER NOT NULL,
     nonce        TEXT NOT NULL,
-    sig          TEXT
+    sig          TEXT,
+    origin       TEXT NOT NULL DEFAULT 'field' CHECK (origin IN ('field', 'injected'))
 );
 CREATE INDEX idx_reports_post_class_date ON reports (post_id, supply_class, report_date);
 CREATE INDEX idx_reports_date ON reports (report_date);
+CREATE INDEX idx_reports_ts ON reports (ts);
+CREATE INDEX idx_reports_origin_ts ON reports (origin, ts);
+CREATE INDEX idx_reports_post_ts ON reports (post_id, ts);
 
 CREATE TABLE gate_verdicts (
-    report_id TEXT PRIMARY KEY REFERENCES reports (report_id),
-    verdict   TEXT NOT NULL CHECK (verdict IN ('VERIFIED', 'REJECTED', 'FLAGGED')),
-    reasons   TEXT NOT NULL DEFAULT '[]',   -- JSON array of strings
-    scored_at TEXT NOT NULL
+    report_id    TEXT PRIMARY KEY REFERENCES reports (report_id),
+    verdict      TEXT NOT NULL CHECK (verdict IN ('VERIFIED', 'REJECTED', 'FLAGGED')),
+    reasons      TEXT NOT NULL DEFAULT '[]',   -- JSON array of human-readable strings
+    reason_codes TEXT NOT NULL DEFAULT '[]',   -- JSON array of machine codes
+    score        REAL,                         -- anomaly score when one was computed
+    scored_at    TEXT NOT NULL
 );
+
+CREATE INDEX idx_verdicts_verdict ON gate_verdicts (verdict, report_id);
+
+-- What analytics may trust: submitted (not injected) reports the gate did not reject.
+CREATE VIEW trusted_reports AS
+SELECT r.* FROM reports AS r LEFT JOIN gate_verdicts AS v USING (report_id)
+WHERE r.origin = 'field' AND COALESCE(v.verdict, 'VERIFIED') != 'REJECTED';
 
 CREATE TABLE forecasts (
     post_id      TEXT NOT NULL REFERENCES posts (id),

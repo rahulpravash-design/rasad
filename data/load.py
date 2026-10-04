@@ -25,6 +25,8 @@ def load_database(
     closure: pd.DataFrame,
     reports: pd.DataFrame,
     deliveries: pd.DataFrame,
+    verdicts: pd.DataFrame,
+    keys: dict[str, str],
     meta: dict[str, str],
 ) -> None:
     """Build the database in a temp file and move it into place, so a failed build never leaves a
@@ -92,8 +94,11 @@ def load_database(
         )
 
         r = reports.sort_values(["date", "post_id", "supply_class"])
+        conn.executemany("INSERT INTO post_keys VALUES (?, ?)", sorted(keys.items()))
+
         conn.executemany(
-            "INSERT INTO reports VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO reports (report_id, post_id, ts, report_date, supply_class, opening, "
+            "received, consumed, closing, nonce, sig) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             zip(
                 r["report_id"],
                 r["post_id"],
@@ -106,6 +111,20 @@ def load_database(
                 r["closing"].astype(int),
                 r["nonce"],
                 r["sig"],
+                strict=True,
+            ),
+        )
+
+        v = verdicts.sort_values("report_id")
+        conn.executemany(
+            "INSERT INTO gate_verdicts VALUES (?, ?, ?, ?, ?, ?)",
+            zip(
+                v["report_id"],
+                v["verdict"],
+                v["reasons"],
+                v["reason_codes"],
+                [None if pd.isna(s) else float(s) for s in v["score"]],
+                v["scored_at"],
                 strict=True,
             ),
         )

@@ -128,3 +128,56 @@ a.nav-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px
   .main { padding: 16px; }
   .map { height: 340px; }
 }
+
+/* ---- reports & verification ---- */
+.reports-grid { grid-template-columns: minmax(0, 1fr) 380px; }
+.side { display: flex; flex-direction: column; gap: 14px; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.tab { background: transparent; color: var(--muted); border: 0; padding: 6px 14px; font: inherit; cursor: pointer; }
+.tab + .tab { border-left: 1px solid var(--line); }
+.tab.active { background: var(--panel-2); color: var(--text); }
+.tab:focus-visible, .btn:focus-visible, select:focus-visible, tr:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.check { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+
+.table-wrap { max-height: 520px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table th { position: sticky; top: 0; background: var(--panel-2); text-align: left; font-weight: 600; color: var(--muted); padding: 8px 10px; }
+.table td { padding: 7px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+.table tbody tr { cursor: pointer; }
+.table tbody tr:hover { background: color-mix(in srgb, var(--panel-2) 60%, transparent); }
+.table tr.selected { background: var(--panel-2); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.empty { text-align: center; padding: 18px; }
+.tag { margin-left: 8px; padding: 1px 7px; border-radius: 999px; font-size: 11px; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+
+.verdict-verified { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 50%, transparent); }
+.verdict-flagged { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 50%, transparent); }
+.verdict-rejected { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 50%, transparent); }
+
+.report-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.report-title { font-size: 18px; font-weight: 650; }
+.facts { display: grid; grid-template-columns: 90px 1fr; gap: 4px 10px; margin: 0 0 12px; font-size: 13px; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; min-width: 0; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reasons { margin: 0 0 12px; padding-left: 18px; font-size: 13px; }
+.reasons li { margin: 3px 0; }
+.recheck { margin-top: 10px; }
+
+.btn { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; font: inherit; cursor: pointer; }
+.btn:hover:not(:disabled) { border-color: var(--accent); }
+.btn:disabled { opacity: 0.6; cursor: progress; }
+.btn-danger { border-color: color-mix(in srgb, var(--bad) 60%, transparent); color: #ffb4ae; }
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; font-size: 13px; color: var(--muted); }
+select { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; }
+
+.banner { margin-top: 14px; padding: 12px 14px; border-radius: 8px; border: 1px solid; }
+.banner-title { font-weight: 650; margin-bottom: 2px; }
+.banner-rejected { color: #ffb4ae; border-color: color-mix(in srgb, var(--bad) 60%, transparent); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+.banner-flagged { color: #f3d28a; border-color: color-mix(in srgb, var(--warn) 60%, transparent); background: color-mix(in srgb, var(--warn) 12%, transparent); }
+.banner-missed, .banner-verified { color: #ffb4ae; border: 2px dashed color-mix(in srgb, var(--bad) 70%, transparent); background: color-mix(in srgb, var(--bad) 8%, transparent); }
+.banner .reasons { margin: 6px 0 0; color: var(--text); }
+
+@media (max-width: 1100px) { .reports-grid { grid-template-columns: 1fr; } }

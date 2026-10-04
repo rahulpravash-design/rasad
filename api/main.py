@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.db import connect
-from api.routes import dashboard, passes, sector
+from api.routes import dashboard, passes, reports, sector
 from api.settings import get_settings
 
 app = FastAPI(
@@ -29,6 +29,7 @@ app.add_middleware(
 app.include_router(dashboard.router)
 app.include_router(passes.router)
 app.include_router(sector.router)
+app.include_router(reports.router)
 
 
 @app.get("/health", tags=["health"])

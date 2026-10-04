@@ -32,6 +32,14 @@ closure_rule:
   reopen_mean_temp_14d_c: 0.0     # reopens once the 14-day mean temperature exceeds this
   at_risk_fraction: 0.5           # interim: AT_RISK once 3-day snow reaches this share of the threshold
 
+gate:
+  # Anomaly layer (gate/anomaly.py). Thresholds are set at training time so that this share of CLEAN
+  # training reports would be flagged, so changing it needs a rebuild.
+  anomaly_false_alarm_target: 0.01
+  history_days: 28                # window for the post's own rolling mean
+  min_history: 7                  # fewer prior reports than this: no z-score is computed
+  n_trees: 200
+
 modes:
   truck:
     payload_t: 7.5
