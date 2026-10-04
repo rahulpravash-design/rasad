@@ -1,0 +1,80 @@
+# Consumption model for the synthetic data generator (data/generate.py).
+#
+#   consumed(post, class, day) =
+#       troops x rate x altitude_factor(alt) x temp_factor(temp) x surge x lognormal_noise
+#
+# PROVENANCE
+#   * rations.rate = 2.5 kg/soldier/day is the figure the team has already sourced. Cite it in
+#     the README before submission.
+#   * EVERY OTHER NUMBER IN THIS FILE IS AN ASSUMPTION chosen to give plausible orders of
+#     magnitude. None is measured, and none comes from Army data. results.md must say so.
+#
+# Quantities are integers in each class's unit; planners convert to tonnes with `kg_per_unit`.
+
+classes:
+  rations:
+    unit: kg
+    kg_per_unit: 1.0
+    rate: 2.5                     # per soldier per day (sourced)
+    altitude_slope: 0.06          # +6% per km above altitude_start_m (assumption)
+    temp_slope: 0.03              # +3% per 10 C below temp_ref_c (assumption)
+  fuel:
+    unit: litre
+    kg_per_unit: 0.8
+    rate: 1.5                     # heating + generators, baseline at temp_ref_c (assumption)
+    altitude_slope: 0.10
+    temp_slope: 0.45              # fuel is the heating-driven class
+  medical:
+    unit: kg
+    kg_per_unit: 1.0
+    rate: 0.05
+    altitude_slope: 0.25          # altitude illness, frostbite (assumption)
+    temp_slope: 0.06
+  ammunition:
+    unit: kg
+    kg_per_unit: 1.0
+    rate: 0.20                    # training expenditure (assumption)
+    altitude_slope: 0.0
+    temp_slope: 0.0
+  spares:
+    unit: kg
+    kg_per_unit: 1.0
+    rate: 0.10
+    altitude_slope: 0.04
+    temp_slope: 0.08
+
+altitude_start_m: 2500            # no altitude uplift below this
+temp_ref_c: 15.0                  # no cold uplift above this
+
+noise:
+  lognormal_sigma: 0.08           # multiplicative day-to-day noise, mean-corrected to 1.0
+
+# Surges are Poisson events at the post level (exercises, inductions) that raise every class for a few
+# days. Overlapping events do not stack: the largest multiplier per class applies.
+surge:
+  rate_per_day: 0.02              # about 3-4 events per post per winter
+  duration_days: [3, 10]          # inclusive integer range
+  types:
+    exercise:
+      weight: 0.6
+      multipliers:                # [min, max] uniform draw per event and class
+        rations: [1.05, 1.20]
+        fuel: [1.20, 1.60]
+        medical: [1.00, 1.20]
+        ammunition: [2.00, 4.00]
+        spares: [1.10, 1.40]
+    induction:
+      weight: 0.4
+      multipliers:
+        rations: [1.20, 1.50]
+        fuel: [1.20, 1.50]
+        medical: [1.20, 1.60]
+        ammunition: [1.00, 1.10]
+        spares: [1.10, 1.30]
+
+# How the historical (pre-planner) operation restocks posts. This is the "clean" stock history that
+# daily reports are generated from. It is not the RASAD planner and not the Day 9 baseline.
+resupply:
+  cycle_days: [10, 24]            # per-post scheduled resupply interval, inclusive
+  buffer_days: [6, 20]            # extra cover above the cycle, per post (low values = thin posts)
+  trailing_days: 28               # window used to size each top-up
