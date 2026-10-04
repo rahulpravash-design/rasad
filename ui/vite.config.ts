@@ -13,9 +13,8 @@ const proxy = {
 
 export default defineConfig({
   plugins: [react()],
-  // maplibre-gl loads its web worker relative to its own file. Dev-mode pre-bundling moves that
-  // file and breaks the lookup ("Worker failed to load"), so keep it out of the optimizer.
-  optimizeDeps: { exclude: ["maplibre-gl"] },
+  // The MapLibre worker is built as an ES module (see src/components/SectorMap.tsx).
+  worker: { format: "es" },
   server: { port: 5173, proxy },
   preview: { port: 4173, proxy },
 });

@@ -38,3 +38,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run build
+      - name: MapLibre worker is emitted as its own asset
+        # Without it the production map silently fails ("Worker failed to load") because the
+        # server answers the missing file with index.html. See ui/src/components/SectorMap.tsx.
+        run: ls dist/assets/maplibre-gl-worker-*.js

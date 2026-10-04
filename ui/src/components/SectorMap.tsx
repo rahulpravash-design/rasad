@@ -1,12 +1,24 @@
-import { LngLatBounds, Map as MapLibreMap, NavigationControl, Popup } from "maplibre-gl";
+import {
+  LngLatBounds,
+  Map as MapLibreMap,
+  NavigationControl,
+  Popup,
+  setWorkerUrl,
+} from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+// MapLibre 6 looks for its worker as a sibling file of itself, which a bundler does not emit, so
+// the page would silently get index.html back. Have Vite build the worker as its own entry (with
+// the shared module it imports) and hand MapLibre the URL.
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import { useEffect, useRef } from "react";
 import type { SectorGeoJson } from "../api";
 
 // Offline basemap: there are no tiles and no remote fonts. The map is a blank style with a
 // graticule and the sector's GeoJSON drawn on top, so it renders with the network off. (To add
 // terrain later, put a raster image or MBTiles source under this style.)
+
+setWorkerUrl(workerUrl);
 
 const STATUS_COLOR = { OPEN: "#3fb27f", AT_RISK: "#e0a43a", CLOSED: "#e5534b" } as const;
 
