@@ -1,0 +1,42 @@
+# RASAD: three services. `api` and `ui` run by default; `fl-server` (Flower federated server)
+# arrives with Day 6 and sits behind a profile so `docker compose up` never starts a stub.
+#
+# NOT YET TESTED: the Docker daemon was unavailable when this file was written. Run `make run`
+# once on a machine with Docker and fix anything it finds before relying on it.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    environment:
+      DB_PATH: data/cache/rasad.db
+      SEED: "42"
+      OFFLINE_MODE: "true"
+      WEATHER_SOURCE: ${WEATHER_SOURCE:-auto}
+    volumes:
+      - ./data/cache:/app/data/cache      # `make data` output and weather cache survive restarts
+      - ./config:/app/config              # constraints.yaml stays live-editable from the host
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  ui:
+    build:
+      context: ui
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+
+  # fl-server:                            # Day 6
+  #   build:
+  #     context: .
+  #     dockerfile: docker/api.Dockerfile
+  #   command: ["python", "-m", "forecast.federated", "--server"]
+  #   profiles: ["federated"]

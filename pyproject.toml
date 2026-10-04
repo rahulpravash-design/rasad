@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rasad"
+version = "0.1.0"
+description = "AI decision layer for high-altitude military logistics: verified reports, federated forecasting, closure-aware movement planning. SIH 2026 - PS SIH26251"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "Apache-2.0" }
+# Exact pins so every laptop builds the same way. Heavier dependencies (torch, flwr,
+# lightgbm, ortools, cryptography, pyjwt) are added by the day that first uses them.
+dependencies = [
+    "fastapi==0.142.2",
+    "uvicorn==0.54.0",
+    "pydantic==2.13.5",
+    "pyyaml==6.0.3",
+    "pandas==3.0.6",
+    "numpy==2.4.6",
+    "pyarrow==25.0.1",
+    "httpx==0.28.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "httpx2==2.13.1",  # Starlette's TestClient prefers it over httpx
+    "ruff==0.16.10",
+]
+
+[tool.setuptools]
+packages = ["api", "api.routes", "audit", "closure", "config", "data", "forecast", "gate", "planner"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
